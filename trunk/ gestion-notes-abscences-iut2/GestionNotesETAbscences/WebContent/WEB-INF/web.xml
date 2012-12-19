@@ -16,7 +16,7 @@
 		<servlet-class>Controleur</servlet-class>
 		<init-param>
 			<param-name>pathMain</param-name>
-			<param-value>/main/main.jsp</param-value>
+			<param-value>/view/main/main.jsp</param-value>
 		</init-param>
 		<init-param>
 			<param-name>pathEditerAbsences</param-name>
