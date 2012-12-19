@@ -1,35 +1,44 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xmlns:web="http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" id="WebApp_ID" version="2.5">
-  <display-name>Jeu</display-name>
-  <welcome-file-list>
-    <welcome-file>index.jsp</welcome-file>
-  </welcome-file-list>
-  <context-param>
-    <param-name>title</param-name>
-    <param-value>Gestion des notes</param-value>
-  </context-param>
-  <servlet>
-    <servlet-name>JSPediterNotes</servlet-name>
-    <jsp-file>/notes/editerNotes.jsp</jsp-file>
-    <init-param>
-      <param-name>JSPparametre</param-name>
-      <param-value>v2</param-value>
-    </init-param>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>JSPediterNotes</servlet-name>
-    <url-pattern>/notes/editerNotes</url-pattern>
-  </servlet-mapping>
-   <servlet>
-    <servlet-name>JSPediterAbsences</servlet-name>
-    <jsp-file>/absences/editerAbsences.jsp</jsp-file>
-    <init-param>
-      <param-name>JSPparametre</param-name>
-      <param-value>v2</param-value>
-    </init-param>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>JSPediterAbsences</servlet-name>
-    <url-pattern>/absences/editerAbsences</url-pattern>
-  </servlet-mapping>
+ <display-name>JeuMVC</display-name>
+
+	<!-- Titre de l'application -->
+	<context-param>
+		<param-name>title</param-name>
+		<param-value>Gestion des notes et abscences des étudiants</param-value>
+	</context-param>
+
+
+	<!--========= Jeu (v3) =========== -->
+	<!-- Servlet controleur -->
+	<servlet>
+		<servlet-name>studifollow</servlet-name>
+		<servlet-class>Controleur</servlet-class>
+		<init-param>
+			<param-name>pathMain</param-name>
+			<param-value>/main/main.jsp</param-value>
+		</init-param>
+		<init-param>
+			<param-name>pathEditerAbsences</param-name>
+			<param-value>/view/editerAbsences.jsp</param-value>
+		</init-param>
+		<init-param>
+			<param-name>pathEditerNotes</param-name>
+			<param-value>/view/editerNotes.jsp</param-value>
+		</init-param>
+		<init-param>
+			<param-name>pathHome</param-name>
+			<param-value>/view/home.jsp</param-value>
+		</init-param>
+	</servlet>
+
+	<!-- Mapping URL/Servlet -->
+	<servlet-mapping>
+		<servlet-name>studifollow</servlet-name>
+		<url-pattern>/do/*</url-pattern>
+	</servlet-mapping>
+	<!--  fichiers d'accueil -->
+	<welcome-file-list>
+		<welcome-file>index.jsp</welcome-file>
+	</welcome-file-list>
 </web-app>

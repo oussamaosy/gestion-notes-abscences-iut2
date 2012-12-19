@@ -4,12 +4,11 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Gestion des notes des étudiants</title>
+<title><%= getServletContext().getInitParameter("title")%></title>
+<%--  on récupère les paramètres d'initialisation de la servlet --%>
 </head>
 <body>
-<%
-  	response.sendRedirect("do/home");
-%>
-
+<% String pathView = (String)request.getAttribute("pathView"); %>
+<jsp:include page="<%=pathView%>"/>
 </body>
 </html>
