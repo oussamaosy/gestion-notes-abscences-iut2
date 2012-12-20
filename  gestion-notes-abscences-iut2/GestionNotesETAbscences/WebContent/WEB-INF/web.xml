@@ -13,7 +13,7 @@
 	<!-- Servlet controleur -->
 	<servlet>
 		<servlet-name>studifollow</servlet-name>
-		<servlet-class>Controleur</servlet-class>
+		<servlet-class>controller.Controleur</servlet-class>
 		<init-param>
 			<param-name>pathMain</param-name>
 			<param-value>/view/main/main.jsp</param-value>

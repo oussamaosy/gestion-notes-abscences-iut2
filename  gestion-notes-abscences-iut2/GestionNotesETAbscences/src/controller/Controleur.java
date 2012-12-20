@@ -1,3 +1,4 @@
+package controller;
 
 
 import java.io.IOException;
@@ -8,6 +9,8 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import model.Etudiant;
 
 
 @SuppressWarnings("serial")
@@ -83,8 +86,13 @@ public class Controleur extends HttpServlet {
 		
 		// Mettre l'objet jeu en attribut de requête
 		//request.setAttribute("jeu", jeu);
-		request.setAttribute("pathView",pathEditerNotes);		
+		
+		request.setAttribute("pathView",pathEditerNotes);
+		Etudiant etu = new Etudiant(1, "prenom", "nom", "groupe");
+		request.setAttribute("etudiant",etu);
+		System.out.println(etu.getNom());
 		loadJSP(pathMain, request, response);
+		
 	}
 
 
