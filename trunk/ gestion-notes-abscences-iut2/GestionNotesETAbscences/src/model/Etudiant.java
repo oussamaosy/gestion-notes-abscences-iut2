@@ -13,6 +13,12 @@ public class Etudiant {
 		super();
 	}
 	
+	@Override
+	public String toString() {
+		return "Etudiant [id=" + id + ", prenom=" + prenom + ", nom=" + nom
+				+ ", nbAbsences=" + nbAbsences + ", groupe=" + groupe + "]";
+	}
+
 	public Etudiant(Integer id, String prenom, String nom, String groupe) {
 		super();
 		this.id = id;

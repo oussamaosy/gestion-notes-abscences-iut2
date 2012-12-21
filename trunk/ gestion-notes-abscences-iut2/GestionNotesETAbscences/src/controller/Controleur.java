@@ -2,6 +2,7 @@ package controller;
 
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletContext;
@@ -11,6 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import model.Etudiant;
+import model.GestionFactory;
 
 
 @SuppressWarnings("serial")
@@ -88,8 +90,12 @@ public class Controleur extends HttpServlet {
 		//request.setAttribute("jeu", jeu);
 		
 		request.setAttribute("pathView",pathEditerNotes);
+		List<Etudiant> listEtudiants = GestionFactory.getEtudiants();
+		System.out.println(listEtudiants);
 		Etudiant etu = new Etudiant(1, "prenom", "nom", "groupe");
 		request.setAttribute("etudiant",etu);
+		request.setAttribute("etudiants",listEtudiants);
+
 		System.out.println(etu.getNom());
 		loadJSP(pathMain, request, response);
 		
