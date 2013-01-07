@@ -3,11 +3,11 @@ package model;
 
 public class Etudiant {
 	
-	private Integer id;
+	private int id;
 	private String prenom;
 	private String nom;
 	private int nbAbsences;
-	private String groupe;
+	private int groupe;
 	
 	public Etudiant() {
 		super();
@@ -19,7 +19,7 @@ public class Etudiant {
 				+ ", nbAbsences=" + nbAbsences + ", groupe=" + groupe + "]";
 	}
 
-	public Etudiant(Integer id, String prenom, String nom, String groupe) {
+	public Etudiant(int id, String prenom, String nom, int groupe) {
 		super();
 		this.id = id;
 		this.prenom = prenom;
@@ -28,11 +28,11 @@ public class Etudiant {
 		this.groupe = groupe;
 	}
 
-	public Integer getId() {
+	public int getId() {
 		return id;
 	}
 
-	public void setId(Integer id) {
+	public void setId(int id) {
 		this.id = id;
 	}
 
@@ -60,11 +60,11 @@ public class Etudiant {
 		this.nbAbsences = nbAbsences;
 	}
 
-	public String getGroupe() {
+	public int getGroupe() {
 		return groupe;
 	}
 
-	public void setGroupe(String groupe) {
+	public void setGroupe(int groupe) {
 		this.groupe = groupe;
 	}
 }

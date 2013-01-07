@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import model.Etudiant;
 import model.GestionFactory;
+import model.Groupe;
 
 
 @SuppressWarnings("serial")
@@ -76,9 +77,12 @@ public class Controleur extends HttpServlet {
 	//
 	private void doEditerAbsences(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
-		System.out.println("pathEditerAbsences: "+pathEditerAbsences);
-		
+		// Mettre l'objet jeu en attribut de requête
+		//request.setAttribute("jeu", jeu);		
 		request.setAttribute("pathView",pathEditerAbsences);
+		request.setAttribute("etudiants",GestionFactory.getEtudiants());
+		request.setAttribute("groupes",GestionFactory.getGroupes());
+		request.setAttribute("matieres",GestionFactory.getMatieres());
 		loadJSP(pathMain, request, response);
 	}
 	
@@ -92,7 +96,7 @@ public class Controleur extends HttpServlet {
 		request.setAttribute("pathView",pathEditerNotes);
 		List<Etudiant> listEtudiants = GestionFactory.getEtudiants();
 		System.out.println(listEtudiants);
-		Etudiant etu = new Etudiant(1, "prenom", "nom", "groupe");
+		Etudiant etu = new Etudiant(1, "prenom", "nom", 0);
 		request.setAttribute("etudiant",etu);
 		request.setAttribute("etudiants",listEtudiants);
 
