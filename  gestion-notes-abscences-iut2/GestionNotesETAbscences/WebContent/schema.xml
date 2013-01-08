@@ -1,103 +1,61 @@
-<table name="groupe"
-	description="Tableau groupe">
-	<column
-		name="id” required="true"
-		autoIncrement="true"
-		primaryKey="true" type="INTEGER"
-		description="Groupe Id" />
-	<column
-		name="intitule" required="true"
-		type="VARCHAR" size="128"
-		description="intitule du groupe"/>
+<table name="groupe" description="Tableau groupe">
+	<column name="id" required="true" autoIncrement="true"
+		primaryKey="true" type="INTEGER" description="Groupe Id" />
+	<column name="intitule" required="true" type="VARCHAR" size="128"
+		description="intitule du groupe" />
 </table>
 
-<table name="etudiant"
-	description="Tableau etudiant">
-	<column
-		name="id" required="true"
-		autoIncrement="true"
-		primaryKey="true" type="INTEGER"
-		description="Etudiant Id"/>
-	<column
-		name="nom" required="true"
-		type="VARCHAR" size="128”
-		description="nom de l'etudiant"/>
-	<column
-		name="prenom" required="true"
-		type="VARCHAR" size="128”
-		description="prenom de l'etudiant"/>
-	<column
-		name="groupe_id" required="false"
-		type="INTEGER" description="Foreign Key Groupe"/>
+<table name="etudiant" description="Tableau etudiant">
+	<column name="id" required="true" autoIncrement="true"
+		primaryKey="true" type="INTEGER" description="Etudiant Id" />
+	<column name="nom" required="true" type="VARCHAR" size="128"
+		description="nom de l'etudiant" />
+	<column name="prenom" required="true" type="VARCHAR" size="128"
+		description="prenom de l'etudiant" />
+	<column name="groupe_id" required="false" type="INTEGER"
+		description="Foreign Key Groupe" />
 	<foreign-key foreignTable="groupe">
-		<reference
-		local="groupe_id" foreign="id"/>
+		<reference local="groupe_id" foreign="id" />
 	</foreign-key>
 </table>
 
-<table name="matiere"
-	description="Tableau matiere">
-	<column
-		name="id” required="true"
-		autoIncrement="true"
-		primaryKey="true" type="INTEGER"
-		description="Matiere Id"/>
-	<column
-		name="intitule" required="true"
-		type="VARCHAR" size="128”
-		description="intitule de la amtiere"/>
+<table name="matiere" description="Tableau matiere">
+	<column name="id" required="true" autoIncrement="true"
+		primaryKey="true" type="INTEGER" description="Matiere Id" />
+	<column name="intitule" required="true" type="VARCHAR" size="128"
+		description="intitule de la matiere" />
 </table>
 
-<table name="absence"
-	description="Tableau absence">
-	<column
-		name="id" required="true"
-		autoIncrement="true"
-		primaryKey="true" type="INTEGER"
-		description="Absence Id"/>
-	<column
-		name="nbheures" required="true"
-		type="INTEGER"
-		description="nombre d'heures de l'absence"/>
-	<column
-		name="etudiant_id" required="false"
-		type="INTEGER" description="Foreign Key Etudiant"/>
-	<column
-		name="matiere_id" required="false"
-		type="INTEGER" description="Foreign Key Matiere"/>
+<table name="absence" description="Tableau absence">
+	<column name="id" required="true" autoIncrement="true"
+		primaryKey="true" type="INTEGER" description="Absence Id" />
+	<column name="nbheures" required="true" type="INTEGER"
+		description="nombre d'heures de l'absence" />
+	<column name="etudiant_id" required="false" type="INTEGER"
+		description="Foreign Key Etudiant" />
+	<column name="matiere_id" required="false" type="INTEGER"
+		description="Foreign Key Matiere" />
 	<foreign-key foreignTable="etudiant">
-		<reference
-		local="etudiant_id" foreign="id"/>
+		<reference local="etudiant_id" foreign="id" />
 	</foreign-key>
 	<foreign-key foreignTable="matiere">
-		<reference
-		local="matiere_id" foreign="id"/>
+		<reference local="matiere_id" foreign="id" />
 	</foreign-key>
 </table>
 
-<table name="note"
-	description="Tableau note">
-	<column
-		name="id" required="true"
-		autoIncrement="true"
-		primaryKey="true" type="INTEGER"
-		description="Note Id"/>
-	<column
-		name="note" required="true"
-		type="FLOAT"
-		description="note de l'etudiant dans la matiere"/>
-	<column
-		name="etudiant_id" required="false"
-		type="INTEGER" description="Foreign Key Etudiant"/>
-	<column
-		name="matiere_id" required="false"
-		type="INTEGER" description="Foreign Key Matiere"/>
+<table name="note" description="Tableau note">
+	<column name="id" required="true" autoIncrement="true"
+		primaryKey="true" type="INTEGER" description="Note Id" />
+	<column name="note" required="true" type="FLOAT"
+		description="note de l'etudiant dans la matiere" />
+	<column name="etudiant_id" required="false" type="INTEGER"
+		description="Foreign Key Etudiant" />
+	<column name="matiere_id" required="false" type="INTEGER"
+		description="Foreign Key Matiere" />
 	<foreign-key foreignTable="etudiant">
-		<reference
-		local="etudiant_id" foreign="id"/>
+		<reference local="etudiant_id" foreign="id" />
 	</foreign-key>
 	<foreign-key foreignTable="matiere">
-		<reference
-		local="matiere_id" foreign="id"/>
+		<reference local="matiere_id" foreign="id" />
 	</foreign-key>
 </table>
