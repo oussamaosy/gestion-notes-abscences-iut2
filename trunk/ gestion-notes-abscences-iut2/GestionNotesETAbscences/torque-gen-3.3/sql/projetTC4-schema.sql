@@ -1,89 +1,96 @@
 
 # -----------------------------------------------------------------------
-# publisher
+# groupe
 # -----------------------------------------------------------------------
-drop table if exists publisher;
+drop table if exists groupe;
 
-CREATE TABLE publisher
+CREATE TABLE groupe
 (
-    publisher_id INTEGER NOT NULL AUTO_INCREMENT,
-    name VARCHAR(128) NOT NULL,
-    PRIMARY KEY(publisher_id));
+    id INTEGER NOT NULL AUTO_INCREMENT,
+    intitule VARCHAR(128) NOT NULL,
+    PRIMARY KEY(id));
 
 
 # -----------------------------------------------------------------------
-# author
+# etudiant
 # -----------------------------------------------------------------------
-drop table if exists author;
+drop table if exists etudiant;
 
-CREATE TABLE author
+CREATE TABLE etudiant
 (
-    author_id INTEGER NOT NULL AUTO_INCREMENT,
-    first_name VARCHAR(128) NOT NULL,
-    last_name VARCHAR(128) NOT NULL,
-    PRIMARY KEY(author_id));
+    id INTEGER NOT NULL AUTO_INCREMENT,
+    nom VARCHAR(128) NOT NULL,
+    prenom VARCHAR(128) NOT NULL,
+    groupe_id INTEGER,
+    PRIMARY KEY(id));
 
 
 # -----------------------------------------------------------------------
-# book
+# matiere
 # -----------------------------------------------------------------------
-drop table if exists book;
+drop table if exists matiere;
 
-CREATE TABLE book
+CREATE TABLE matiere
 (
-    book_id INTEGER NOT NULL AUTO_INCREMENT,
-    title VARCHAR(255) NOT NULL,
-    isbn VARCHAR(24) NOT NULL,
-    publisher_id INTEGER NOT NULL,
-    author_id INTEGER NOT NULL,
-    PRIMARY KEY(book_id));
+    id INTEGER NOT NULL AUTO_INCREMENT,
+    intitule VARCHAR(128) NOT NULL,
+    PRIMARY KEY(id));
 
 
 # -----------------------------------------------------------------------
-# reader
+# absence
 # -----------------------------------------------------------------------
-drop table if exists reader;
+drop table if exists absence;
 
-CREATE TABLE reader
+CREATE TABLE absence
 (
-    reader_id INTEGER NOT NULL AUTO_INCREMENT,
-    name VARCHAR(255) NOT NULL,
-    PRIMARY KEY(reader_id));
+    id INTEGER NOT NULL AUTO_INCREMENT,
+    nbheures INTEGER NOT NULL,
+    etudiant_id INTEGER,
+    matiere_id INTEGER,
+    PRIMARY KEY(id));
 
 
 # -----------------------------------------------------------------------
-# reference
+# note
 # -----------------------------------------------------------------------
-drop table if exists reference;
+drop table if exists note;
 
-CREATE TABLE reference
+CREATE TABLE note
 (
-    book_id INTEGER NOT NULL,
-    reader_id INTEGER NOT NULL,
-    test VARCHAR(24),
-    PRIMARY KEY(book_id,reader_id));
+    id INTEGER NOT NULL AUTO_INCREMENT,
+    note FLOAT NOT NULL,
+    etudiant_id INTEGER,
+    matiere_id INTEGER,
+    PRIMARY KEY(id));
 
-ALTER TABLE book
-    ADD CONSTRAINT book_FK_1
-    FOREIGN KEY (publisher_id)
-    REFERENCES publisher (publisher_id)
+ALTER TABLE etudiant
+    ADD CONSTRAINT etudiant_FK_1
+    FOREIGN KEY (groupe_id)
+    REFERENCES groupe (id)
 ;
 
-ALTER TABLE book
-    ADD CONSTRAINT book_FK_2
-    FOREIGN KEY (author_id)
-    REFERENCES author (author_id)
+ALTER TABLE absence
+    ADD CONSTRAINT absence_FK_1
+    FOREIGN KEY (etudiant_id)
+    REFERENCES etudiant (id)
 ;
 
-ALTER TABLE reference
-    ADD CONSTRAINT reference_FK_1
-    FOREIGN KEY (book_id)
-    REFERENCES book (book_id)
+ALTER TABLE absence
+    ADD CONSTRAINT absence_FK_2
+    FOREIGN KEY (matiere_id)
+    REFERENCES matiere (id)
 ;
 
-ALTER TABLE reference
-    ADD CONSTRAINT reference_FK_2
-    FOREIGN KEY (reader_id)
-    REFERENCES reader (reader_id)
+ALTER TABLE note
+    ADD CONSTRAINT note_FK_1
+    FOREIGN KEY (etudiant_id)
+    REFERENCES etudiant (id)
+;
+
+ALTER TABLE note
+    ADD CONSTRAINT note_FK_2
+    FOREIGN KEY (matiere_id)
+    REFERENCES matiere (id)
 ;
 

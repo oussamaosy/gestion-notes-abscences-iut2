@@ -1,0 +1,80 @@
+
+targetdatabase = mysql
+
+correctGetters = 
+
+             
+
+
+
+
+
+
+
+
+
+    Peers generated in package fr.iut2.tc4.aideprojet2.torque.generated
+    Objects generated in package fr.iut2.tc4.aideprojet2.torque.generated
+    Managers generated in package fr.iut2.tc4.aideprojet2.torque.generated
+    Beans generated in package fr.iut2.tc4.aideprojet2.torque.generated.bean
+
+    Failed to create dir or dir already exists: /home/askrim/workspace/GestionNotesETAbscences/src/fr/iut2/tc4/aideprojet2/torque/generated/
+
+    Failed to create dir or dir already exists: /home/askrim/workspace/GestionNotesETAbscences/src/fr/iut2/tc4/aideprojet2/torque/generated/
+
+
+
+
+        groupe
+
+        
+
+
+
+
+
+
+        etudiant
+
+        
+
+
+          
+
+          
+
+
+
+        matiere
+
+        
+
+
+          
+
+          
+
+
+
+        absence
+
+        
+
+
+          
+
+          
+
+
+
+        note
+
+        
+
+
+          
+
+          
+
+
+

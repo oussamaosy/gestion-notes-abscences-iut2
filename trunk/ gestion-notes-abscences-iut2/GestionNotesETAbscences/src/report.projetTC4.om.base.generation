@@ -1,0 +1,101 @@
+
+targetdatabase = mysql
+
+correctGetters = 
+
+             
+
+
+
+
+
+
+
+
+
+    BasePeers generated in package fr.iut2.tc4.aideprojet2.torque.generated
+    BaseObjects generated in package fr.iut2.tc4.aideprojet2.torque.generated
+    BaseManagers generated in package fr.iut2.tc4.aideprojet2.torque.generated
+    BaseBeans generated in package fr.iut2.tc4.aideprojet2.torque.generated.bean
+    Maps generated in package fr.iut2.tc4.aideprojet2.torque.generated.map
+
+    Failed to create dir or dir already exists: /home/askrim/workspace/GestionNotesETAbscences/src/fr/iut2/tc4/aideprojet2/torque/generated/
+
+    Failed to create dir or dir already exists: /home/askrim/workspace/GestionNotesETAbscences/src/fr/iut2/tc4/aideprojet2/torque/generated/
+
+    Failed to create dir or dir already exists: /home/askrim/workspace/GestionNotesETAbscences/src/fr/iut2/tc4/aideprojet2/torque/generated/map/
+
+
+
+    
+
+        groupe
+
+        
+
+        
+
+          
+
+
+          
+
+
+        etudiant
+
+        
+
+        
+
+          
+
+
+          
+
+
+        matiere
+
+        
+
+        
+
+          
+
+
+          
+
+
+        absence
+
+        
+
+        
+
+          
+
+
+          
+
+
+        note
+
+        
+
+        
+
+          
+
+
+          
+
+
+
+
+
+
+    
+
+;
+    Failed to create dir or dir already exists: /home/askrim/workspace/GestionNotesETAbscences/src/org/apache/torque/linkage/
+    
+
