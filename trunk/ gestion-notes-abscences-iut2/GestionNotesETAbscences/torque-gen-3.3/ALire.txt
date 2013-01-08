@@ -1,0 +1,22 @@
+
+===================================
+Fichiers de propriété
+
+dans torque-gen-3.3, build.properties 
+-> fichier pour la génération des classes, BD et tables
+Attention torque.project = projetTC4 ->  nom du schema projetTC4-schema.xml
+
+dans WebContent/WEB-INF/classe, Torque.properties
+-> fichier pour la connexion de l'application à la BD
+
+===================================
+Commandes pour générer les classes, BD et tables (utilisant build.properties)
+
+Génération de la BD (pas nécessaire si fait à la main)
+ant -f build-torque.xml create-db
+
+Génération des classes java et du fichier sql permettant de créer les tables
+ant -f build-torque.xml
+
+Génération des tables dans la BD
+ant -f build-torque.xml insert-sql
