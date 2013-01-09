@@ -13,14 +13,14 @@ correctGetters =
 
 
 
-    Peers generated in package fr.iut2.tc4.aideprojet2.torque.generated
-    Objects generated in package fr.iut2.tc4.aideprojet2.torque.generated
-    Managers generated in package fr.iut2.tc4.aideprojet2.torque.generated
-    Beans generated in package fr.iut2.tc4.aideprojet2.torque.generated.bean
+    Peers generated in package base.torque.generated
+    Objects generated in package base.torque.generated
+    Managers generated in package base.torque.generated
+    Beans generated in package base.torque.generated.bean
 
-    Failed to create dir or dir already exists: /home/askrim/workspace/GestionNotesETAbscences/src/fr/iut2/tc4/aideprojet2/torque/generated/
+    Failed to create dir or dir already exists: /home/askrim/workspace/GestionNotesETAbscences/src/base/torque/generated/
 
-    Failed to create dir or dir already exists: /home/askrim/workspace/GestionNotesETAbscences/src/fr/iut2/tc4/aideprojet2/torque/generated/
+    Failed to create dir or dir already exists: /home/askrim/workspace/GestionNotesETAbscences/src/base/torque/generated/
 
 
 
@@ -39,9 +39,7 @@ correctGetters =
         
 
 
-          
 
-          
 
 
 
@@ -50,9 +48,7 @@ correctGetters =
         
 
 
-          
 
-          
 
 
 
@@ -61,9 +57,7 @@ correctGetters =
         
 
 
-          
 
-          
 
 
 
@@ -72,9 +66,7 @@ correctGetters =
         
 
 
-          
 
-          
 
 
 

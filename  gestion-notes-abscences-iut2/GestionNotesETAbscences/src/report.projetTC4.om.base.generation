@@ -13,17 +13,17 @@ correctGetters =
 
 
 
-    BasePeers generated in package fr.iut2.tc4.aideprojet2.torque.generated
-    BaseObjects generated in package fr.iut2.tc4.aideprojet2.torque.generated
-    BaseManagers generated in package fr.iut2.tc4.aideprojet2.torque.generated
-    BaseBeans generated in package fr.iut2.tc4.aideprojet2.torque.generated.bean
-    Maps generated in package fr.iut2.tc4.aideprojet2.torque.generated.map
+    BasePeers generated in package base.torque.generated
+    BaseObjects generated in package base.torque.generated
+    BaseManagers generated in package base.torque.generated
+    BaseBeans generated in package base.torque.generated.bean
+    Maps generated in package base.torque.generated.map
 
-    Failed to create dir or dir already exists: /home/askrim/workspace/GestionNotesETAbscences/src/fr/iut2/tc4/aideprojet2/torque/generated/
+    Failed to create dir or dir already exists: /home/askrim/workspace/GestionNotesETAbscences/src/base/torque/generated/
 
-    Failed to create dir or dir already exists: /home/askrim/workspace/GestionNotesETAbscences/src/fr/iut2/tc4/aideprojet2/torque/generated/
+    Failed to create dir or dir already exists: /home/askrim/workspace/GestionNotesETAbscences/src/base/torque/generated/
 
-    Failed to create dir or dir already exists: /home/askrim/workspace/GestionNotesETAbscences/src/fr/iut2/tc4/aideprojet2/torque/generated/map/
+    Failed to create dir or dir already exists: /home/askrim/workspace/GestionNotesETAbscences/src/base/torque/generated/map/
 
 
 

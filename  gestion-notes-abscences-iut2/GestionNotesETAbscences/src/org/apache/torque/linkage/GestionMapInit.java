@@ -10,6 +10,6 @@ package org.apache.torque.linkage;
  * @see org.apache.torque.map.DatabaseMap#initialize() DatabaseMap.initialize() 
  */
 public class GestionMapInit
-        extends fr.iut2.tc4.aideprojet2.torque.generated.map.GestionMapInit
+        extends base.torque.generated.map.GestionMapInit
 {
 }

@@ -1,4 +1,4 @@
-package fr.iut2.tc4.aideprojet2.torque.generated.map;
+package base.torque.generated.map;
 
 import org.apache.torque.TorqueException;
 
@@ -15,10 +15,10 @@ public class GestionMapInit
     public static final void init()
         throws TorqueException
     {
-        fr.iut2.tc4.aideprojet2.torque.generated.GroupePeer.getMapBuilder();
-        fr.iut2.tc4.aideprojet2.torque.generated.EtudiantPeer.getMapBuilder();
-        fr.iut2.tc4.aideprojet2.torque.generated.MatierePeer.getMapBuilder();
-        fr.iut2.tc4.aideprojet2.torque.generated.AbsencePeer.getMapBuilder();
-        fr.iut2.tc4.aideprojet2.torque.generated.NotePeer.getMapBuilder();
+        base.torque.generated.GroupePeer.getMapBuilder();
+        base.torque.generated.EtudiantPeer.getMapBuilder();
+        base.torque.generated.MatierePeer.getMapBuilder();
+        base.torque.generated.AbsencePeer.getMapBuilder();
+        base.torque.generated.NotePeer.getMapBuilder();
     }
 }
