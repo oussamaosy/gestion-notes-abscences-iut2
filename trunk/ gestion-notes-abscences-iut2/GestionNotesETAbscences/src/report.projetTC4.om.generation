@@ -13,14 +13,14 @@ correctGetters =
 
 
 
-    Peers generated in package base.torque.generated
-    Objects generated in package base.torque.generated
-    Managers generated in package base.torque.generated
-    Beans generated in package base.torque.generated.bean
+    Peers generated in package model
+    Objects generated in package model
+    Managers generated in package model
+    Beans generated in package model.bean
 
-    Failed to create dir or dir already exists: /home/askrim/workspace/GestionNotesETAbscences/src/base/torque/generated/
+    Failed to create dir or dir already exists: /home/fournico/workspace/GestionNotesETAbscences/src/model/
 
-    Failed to create dir or dir already exists: /home/askrim/workspace/GestionNotesETAbscences/src/base/torque/generated/
+    Failed to create dir or dir already exists: /home/fournico/workspace/GestionNotesETAbscences/src/model/
 
 
 
