@@ -15,12 +15,12 @@
 	<!-- Menu -->
 	<ul id="menu">
 	<li>
-	<a href="home">Home</a>
+	<a href="/GestionNotesETAbscences/home">Home</a>
 	</li>
 	<li>
-	<a href="editerAbsences">Absences</a>
+	<a href="/GestionNotesETAbscences/absences/editer">Absences</a>
 	</li>
-	<li><a href="editerNotes">Notes</a></li>
+	<li><a href="/GestionNotesETAbscences/notes/editer">Notes</a></li>
 	</ul>
 	
 	<!-- Contenu -->
