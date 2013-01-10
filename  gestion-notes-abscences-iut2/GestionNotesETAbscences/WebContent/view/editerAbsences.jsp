@@ -28,7 +28,7 @@
 				List<Groupe> listGroupe = (List<Groupe>)request.getAttribute("groupes");
 				for (Groupe groupe : listGroupe) {
 			%>
-			<option value="<%=groupe.getId()%>"><%=groupe.getNom()%></option>
+			<option value="<%=groupe.getId()%>"><%=groupe.getIntitule() %> </option>
 			<%
 				}
 			%>
@@ -40,7 +40,7 @@
 				List<Matiere> listMatiere = (List<Matiere>)request.getAttribute("matieres");
 				for (Matiere matiere : listMatiere) {
 			%>
-			<option value="<%=matiere.getId()%>"><%=matiere.getNom()%></option>
+			<option value="<%=matiere.getId()%>"><%=matiere.getIntitule()%></option>
 			<%
 				}
 			%>

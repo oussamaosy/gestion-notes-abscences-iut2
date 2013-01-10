@@ -96,7 +96,9 @@ public class Controleur extends HttpServlet {
 		request.setAttribute("pathView",pathEditerNotes);
 		List<Etudiant> listEtudiants = GestionFactory.getEtudiants();
 		System.out.println(listEtudiants);
-		Etudiant etu = new Etudiant(1, "prenom", "nom", 0);
+		Etudiant etu = new Etudiant();
+		etu.setNom("nom");
+		etu.setPrenom("prenom");
 		request.setAttribute("etudiant",etu);
 		request.setAttribute("etudiants",listEtudiants);
 
