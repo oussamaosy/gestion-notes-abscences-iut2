@@ -24,7 +24,6 @@ public class Controleur extends HttpServlet {
 	protected String pathEditerAbsences;
 	protected String methode;
 	protected String action;
-	private static final String TORQUE_PROPS = new String("Torque.properties");
 
 	// INIT
 	public void init() throws ServletException {

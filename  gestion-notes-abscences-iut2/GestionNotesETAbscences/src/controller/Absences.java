@@ -9,6 +9,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.torque.NoRowsException;
+import org.apache.torque.TooManyRowsException;
 import org.apache.torque.TorqueException;
 import org.apache.torque.util.Criteria;
 
@@ -34,36 +36,37 @@ public class Absences extends Controleur{
 		super.doGet(request, response);
 		
 		if (methode.equals("get") && action.equals("/editer")) {
-			try {
-				doEditer(request, response);
-			} catch (TorqueException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+					doEditer(request, response);
 			
 		} 
 	}	
 	private void doEditer(HttpServletRequest request,
-			HttpServletResponse response) throws ServletException, IOException, TorqueException {
+			HttpServletResponse response) throws ServletException, IOException{
 		System.out.println("PASSE :"+ pathEditerAbsences);
 
 		// Mettre l'objet jeu en attribut de requête
 		//request.setAttribute("jeu", jeu);
-		Criteria crit = new Criteria();
-		Etudiant etu= EtudiantPeer.retrieveByPK(1);
-System.out.println(etu);
-		List<Etudiant> listEtudiants = EtudiantPeer.doSelect(crit);
-		System.out.println(listEtudiants);
-		List<Groupe> listGroupes= GroupePeer.doSelect(crit);
+				
+			List<Etudiant> listEtudiants;
+			try {
+				listEtudiants = EtudiantPeer.doSelectAll();
+				List<Groupe> listGroupes= GroupePeer.doSelectAll();
+				request.setAttribute("etudiants",listEtudiants);
+				request.setAttribute("groupes",listGroupes);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+	
+		
+		
 
 
-		etu.setNom("nom");
-		etu.setPrenom("prenom");
+
 
 		request.setAttribute("pathView",pathEditerAbsences);
-		request.setAttribute("etudiant",etu);
-		request.setAttribute("etudiants",listEtudiants);
-		request.setAttribute("groupes",listGroupes);
+		
 		System.out.println(pathEditerAbsences);
 
 		loadJSP(pathMain, request, response);

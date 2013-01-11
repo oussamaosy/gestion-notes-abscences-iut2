@@ -8,7 +8,12 @@
 		<param-value>Gestion des notes et abscences des étudiants</param-value>
 	</context-param>
 
-
+	<servlet>
+		<servlet-name>ServletInit</servlet-name>
+		<servlet-class>ServletTorque.ServletInit</servlet-class>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+	
 	<!--========= Jeu (v3) =========== -->
 	<!-- Servlet controleur -->
 	<servlet>

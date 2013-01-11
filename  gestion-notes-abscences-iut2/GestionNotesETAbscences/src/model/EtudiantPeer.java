@@ -1,5 +1,11 @@
 package model;
 
+import java.util.List;
+
+import org.apache.torque.TorqueException;
+import org.apache.torque.util.Criteria;
+
+
 /**
  * Tableau etudiant
  *
@@ -16,5 +22,10 @@ public class EtudiantPeer
 {
     /** Serial version */
     private static final long serialVersionUID = 1357814278388L;
+
+    public static List<Etudiant> doSelectAll() throws Exception {
+		Criteria crit = new Criteria();
+		return doSelect(crit);
+	}
 
 }
