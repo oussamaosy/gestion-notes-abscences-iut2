@@ -1,5 +1,9 @@
 package model;
 
+import java.util.List;
+
+import org.apache.torque.util.Criteria;
+
 /**
  * Tableau groupe
  *
@@ -16,5 +20,10 @@ public class GroupePeer
 {
     /** Serial version */
     private static final long serialVersionUID = 1357814278388L;
+
+    public static List<Groupe> doSelectAll() throws Exception {
+		Criteria crit = new Criteria();
+		return doSelect(crit);
+	}
 
 }
