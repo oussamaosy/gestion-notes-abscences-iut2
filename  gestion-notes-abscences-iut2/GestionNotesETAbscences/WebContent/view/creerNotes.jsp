@@ -8,30 +8,29 @@
 
 <form>
 	<fieldset>
-		<legend> Voir les notes </legend>
-		<input type="radio" name="choix" value="etudiant" checked>Etudiant:
-		<select name="etudiant" id="etudiant">
+		<legend> Ajouter une note </legend>
+		<label for="etudiant"> Sélectioner un étudiant: </label> <select
+			name="etudiant" id="etudiant">
 			<option value="">Aucune</option>
-			<%--<%
+			<%-- <%
 				List<Etudiant> listEtudiant = (List<Etudiant>) request
 						.getAttribute("etudiants");
 				for (Etudiant etu : listEtudiant) {
+			
 			<option value="<%=etu.getId()%>"><%=etu.getNom() + " " + etu.getPrenom()%></option>
 			<%
 				}
-			%>			--%>
-		</select><br> <input type="radio" name="choix" value="groupe">Groupe:
-		<select name="groupe" id="groupe">
-			<option value="">Aucune</option>
-			<%--<%
-				List<Groupe> listGroupe = (List<Groupe>) request
-						.getAttribute("groupes");
-				for (Groupe groupe : listGroupe) {
-			<option value="<%=groupe.getId()%>"><%=groupe.getIntitule()%>
+			%> --%>
+		</select><br> <label for="note"> Note sur 20: </label> <select
+			name="note" id="note">
+			<%
+				for (int i = 0; i < 20; i++) {
+			%>
+			<option value="<%=i%>"><%=i + " / 20"%>
 			</option>
 			<%
 				}
-			%>			--%>
+			%>
 		</select><br> <label for="matiere">Filtrer par matière :</label> <select
 			name="matiere" id="matiere">
 			<option value="">Toutes</option>
@@ -42,27 +41,7 @@
 			<option value="<%=matiere.getId()%>"><%=matiere.getIntitule()%></option>
 			<%
 				}
-			%>			--%>
-		</select><br> <br> <input type="submit" value="Filtrer">
+			%> --%>
+		</select><br> <br> <input type="submit" value="Enregistrer">
 	</fieldset>
 </form>
-
-<label for="avNotes">Moyenne des notes: </label>
-<input type="text" readonly id="avNotes" name="avNotes" />
-<br>
-
-<table>
-	<tr>
-		<th>Etudiant</th>
-		<th>Matiere</th>
-		<th>Note</th>
-		<th></th>
-	</tr>
-	<tr>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-	</tr>
-</table>
-<br>
