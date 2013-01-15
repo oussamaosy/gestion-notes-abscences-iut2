@@ -8,7 +8,7 @@
 </head>
 <body>
 <%
-  	response.sendRedirect("home/");
+  	response.sendRedirect("gestion/");
 %>
 
 </body>

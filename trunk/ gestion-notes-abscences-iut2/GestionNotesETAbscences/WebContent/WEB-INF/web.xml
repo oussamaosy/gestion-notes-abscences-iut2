@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xmlns:web="http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" id="WebApp_ID" version="2.5">
- <display-name>Gestion</display-name>
+ <display-name>JeuMVC</display-name>
 
 	<!-- Titre de l'application -->
 	<context-param>
@@ -9,15 +9,18 @@
 	</context-param>
 
 
-	
 	<!--========= Jeu (v3) =========== -->
 	<!-- Servlet controleur -->
 	<servlet>
-		<servlet-name>notes</servlet-name>
-		<servlet-class>controller.Notes</servlet-class>
+		<servlet-name>studifollow</servlet-name>
+		<servlet-class>controller.Controleur</servlet-class>
 		<init-param>
 			<param-name>pathMain</param-name>
 			<param-value>/view/main/main.jsp</param-value>
+		</init-param>
+		<init-param>
+			<param-name>pathEditerAbsences</param-name>
+			<param-value>/view/editerAbsences.jsp</param-value>
 		</init-param>
 		<init-param>
 			<param-name>pathEditerNotes</param-name>
@@ -31,51 +34,11 @@
 
 	<!-- Mapping URL/Servlet -->
 	<servlet-mapping>
-		<servlet-name>notes</servlet-name>
-		<url-pattern>/notes/*</url-pattern>
+		<servlet-name>studifollow</servlet-name>
+		<url-pattern>/gestion/*</url-pattern>
 	</servlet-mapping>
 	
-	<servlet>
-		<servlet-name>absences</servlet-name>
-		<servlet-class>controller.Absences</servlet-class>
-		<init-param>
-			<param-name>pathMain</param-name>
-			<param-value>/view/main/main.jsp</param-value>
-		</init-param>
-		<init-param>
-			<param-name>pathEditerAbsences</param-name>
-			<param-value>/view/editerAbsences.jsp</param-value>
-		</init-param>
-		<init-param>
-			<param-name>pathHome</param-name>
-			<param-value>/view/home.jsp</param-value>
-		</init-param>
-	</servlet>
-
-	<!-- Mapping URL/Servlet -->
-	<servlet-mapping>
-		<servlet-name>absences</servlet-name>
-		<url-pattern>/absences/*</url-pattern>
-	</servlet-mapping>
 	
-	<servlet>
-		<servlet-name>home</servlet-name>
-		<servlet-class>controller.Home</servlet-class>
-		<init-param>
-			<param-name>pathMain</param-name>
-			<param-value>/view/main/main.jsp</param-value>
-		</init-param>
-		<init-param>
-			<param-name>pathHome</param-name>
-			<param-value>/view/home.jsp</param-value>
-		</init-param>
-	</servlet>
-
-	<!-- Mapping URL/Servlet -->
-	<servlet-mapping>
-		<servlet-name>home</servlet-name>
-		<url-pattern>/home/*</url-pattern>
-	</servlet-mapping>
 	<!--  fichiers d'accueil -->
 	<welcome-file-list>
 		<welcome-file>index.jsp</welcome-file>
@@ -83,7 +46,7 @@
 	
 	<servlet>
 		<servlet-name>ServletInit</servlet-name>
-		<servlet-class>ServletTorque.ServletInit</servlet-class>
+		<servlet-class>servlettorque.ServletInit</servlet-class>
 		<load-on-startup>1</load-on-startup>
 	</servlet>
 </web-app>
