@@ -1,4 +1,8 @@
 package model;
+import java.util.List;
+
+import org.apache.torque.util.Criteria;
+
 
 /**
  * Tableau matiere
@@ -16,5 +20,9 @@ public class MatierePeer
 {
     /** Serial version */
     private static final long serialVersionUID = 1357814278388L;
-
+    
+    public static List <Matiere> doSelectAll() throws Exception {
+		Criteria crit = new Criteria();
+		return doSelect(crit);
+	}
 }
