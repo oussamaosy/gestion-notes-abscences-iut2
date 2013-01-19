@@ -1,6 +1,10 @@
 package model;
 
 
+import java.util.ArrayList;
+import java.util.List;
+
+import org.apache.torque.TorqueException;
 import org.apache.torque.om.Persistent;
 
 /**
@@ -21,4 +25,76 @@ public  class Absence
     /** Serial version */
     private static final long serialVersionUID = 1357814278388L;
 
+    
+    /**
+     * Return list of Absences for a etudiantId sent
+     *
+     * @return List<Absence>
+     */
+	public static List<Absence> getAbsencesEtudiant(int etudiantId) throws TorqueException
+    {
+    	List<Absence> absences = new ArrayList<Absence>();
+    	Etudiant etudiant = EtudiantPeer.retrieveByPK(etudiantId);
+		List<Absence> listAbsences = etudiant.getAbsences();
+		for(Absence absence : listAbsences){
+			absences.add(absence);
+		}
+		return absences;
+    }
+    
+    /**
+     * Return list of Absences for a etudiantId and matiereId sent
+     *
+     * @return List<Absence>
+     */
+	public static List<Absence> getAbsencesEtudiantForMatiere(int etudiantId, int matiereId) throws TorqueException
+    {
+    	List<Absence> absences = new ArrayList<Absence>();
+    	Etudiant etudiant = EtudiantPeer.retrieveByPK(etudiantId);
+		List<Absence> listAbsences = etudiant.getAbsences();
+		for(Absence absence : listAbsences){
+			if(absence.getMatiereId()==matiereId)
+				absences.add(absence);
+		}
+		return absences;
+    }
+    
+    /**
+     * Return list of Absences for a groupeId sent
+     *
+     * @return List<Absence>
+     */
+	public static List<Absence> getAbsencesGroupe(int groupeId) throws TorqueException
+    {
+    	List<Absence> absences = new ArrayList<Absence>();
+    	Groupe groupe = GroupePeer.retrieveByPK(groupeId);
+		List<Etudiant> listEtu = groupe.getEtudiants();
+		for(Etudiant etu : listEtu){
+			List<Absence> listAbsences = etu.getAbsences();
+			for(Absence absence : listAbsences){
+				absences.add(absence);
+			}
+		}
+		return absences;
+    }
+    
+    /**
+     * Return list of Absences for a groupeId and matiereId sent
+     *
+     * @return List<Absence>
+     */
+	public static List<Absence> getAbsencesGroupeForMatiere(int groupeId, int matiereId) throws TorqueException
+    {
+    	List<Absence> absences = new ArrayList<Absence>();
+    	Groupe groupe = GroupePeer.retrieveByPK(groupeId);
+			List<Etudiant> listEtu = groupe.getEtudiants();
+			for(Etudiant etu : listEtu){
+				List<Absence> listAbsences = etu.getAbsences();
+				for(Absence absence : listAbsences){
+					if(absence.getMatiereId()==matiereId)
+						absences.add(absence);
+				}
+			}
+		return absences;
+    }
 }

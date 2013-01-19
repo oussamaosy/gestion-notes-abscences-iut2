@@ -33,7 +33,6 @@ public class ServletInit extends GenericServlet {
 		super.init();
 
 		// Initialisation de la connection Torque
-		System.out.println("PASSE");
 		if (!Torque.isInit()) {
 			try {
 
