@@ -35,8 +35,7 @@ public class Absences{
 		if(act.indexOf("/")>0){
 			//Répartition dans les controleurs
 			act = act.substring(act.indexOf("/")+1);
-		}else{
-			home(request, response);
+		
 			if (methode.equals("get") && act.equals("editer")) {
 				home(request, response);
 			
@@ -45,8 +44,14 @@ public class Absences{
 				
 			} else if (methode.equals("get") && act.equals("creer")) {
 				creer(request, response);
-			}
 			
+			} else if (methode.equals("get") && act.equals("editer")) {
+				System.out.println("editer : "+controleur.getPathEditerAbsences());
+				editer(request, response);
+				
+			}
+		}else{
+			home(request, response);	
 		}
 		System.out.println("action : "+act);
 
@@ -133,5 +138,9 @@ public class Absences{
 	private  void creer(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
 		request.setAttribute("pathView",controleur.getPathCreerAbsences());
+	}
+	private  void editer(HttpServletRequest request,
+			HttpServletResponse response) throws ServletException, IOException {
+		request.setAttribute("pathView",controleur.getPathEditerAbsences());
 	}
 }

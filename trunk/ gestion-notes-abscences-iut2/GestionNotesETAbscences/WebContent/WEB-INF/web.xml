@@ -46,6 +46,15 @@
 			<param-name>pathHome</param-name>
 			<param-value>/view/home.jsp</param-value>
 		</init-param>
+		<init-param>
+			<param-name>pathEditerNotes</param-name>
+			<param-value>/view/editerNotes.jsp</param-value>
+		</init-param>
+		<init-param>
+			<param-name>pathEditerAbsences</param-name>
+			<param-value>/view/editerAbsences.jsp</param-value>
+		</init-param>
+
 	</servlet>
 
 	<!-- Mapping URL/Servlet -->
