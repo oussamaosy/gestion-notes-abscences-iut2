@@ -30,6 +30,8 @@ public class Notes {
 	public  void traiterActions(HttpServletRequest request, HttpServletResponse response, String action, String methode) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		String act=action;
+		System.out.println("action : "+act);
+
 		if(act.indexOf("/")>0){
 			//Répartition dans les controleurs
 			act = act.substring(act.indexOf("/")+1);

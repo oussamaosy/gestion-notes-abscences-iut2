@@ -46,6 +46,7 @@ CREATE TABLE absence
 (
     id INTEGER NOT NULL AUTO_INCREMENT,
     nbheures INTEGER NOT NULL,
+    date DATETIME NOT NULL,
     etudiant_id INTEGER,
     matiere_id INTEGER,
     PRIMARY KEY(id));

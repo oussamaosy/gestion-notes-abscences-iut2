@@ -75,8 +75,8 @@ public class Controleur extends HttpServlet {
 		String methode = request.getMethod().toLowerCase();
 		
 		// On récupère l'action à exécuter
-		String actions= request.getPathInfo().substring(1);
-		String controleurName = actions;
+		String actionPath= request.getPathInfo().substring(1);
+		String controleurName = actionPath;
 		System.out.println("Controleur: "+controleurName);
 
 		if(controleurName.indexOf("/")>0){
@@ -90,12 +90,12 @@ public class Controleur extends HttpServlet {
 			if(controleurName.equals("absences")){
 				
 				Absences controleurabsences = new Absences(this);
-				controleurabsences.traiterActions(request,response,actions,methode);
+				controleurabsences.traiterActions(request,response,actionPath,methode);
 				
 			}else if(controleurName.equals("notes")){
 				
 				Notes controleurNotes = new Notes(this);
-				controleurNotes.traiterActions(request,response,actions,methode);
+				controleurNotes.traiterActions(request,response,actionPath,methode);
 
 			}
 			// Exécution action

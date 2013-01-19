@@ -8,7 +8,12 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.torque.NoRowsException;
+import org.apache.torque.TooManyRowsException;
+import org.apache.torque.TorqueException;
+
 import model.Absence;
+import model.AbsencePeer;
 import model.Etudiant;
 import model.EtudiantPeer;
 import model.Groupe;
@@ -32,12 +37,14 @@ public class Absences{
 	public  void traiterActions(HttpServletRequest request, HttpServletResponse response, String action, String methode) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		String act=action;
+		System.out.println("action : "+act);
+
 		if(act.indexOf("/")>0){
 			//Répartition dans les controleurs
 			act = act.substring(act.indexOf("/")+1);
-		
+			System.out.println(methode.equals("get")&& act.equals("editer"));
 			if (methode.equals("get") && act.equals("editer")) {
-				home(request, response);
+				editer(request, response);
 			
 			} else if (methode.equals("get") && act.equals("supprimer")) {
 				supprimer(request, response);
@@ -45,10 +52,6 @@ public class Absences{
 			} else if (methode.equals("get") && act.equals("creer")) {
 				creer(request, response);
 			
-			} else if (methode.equals("get") && act.equals("editer")) {
-				System.out.println("editer : "+controleur.getPathEditerAbsences());
-				editer(request, response);
-				
 			}
 		}else{
 			home(request, response);	
@@ -132,15 +135,60 @@ public class Absences{
 	private  void supprimer(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
 		request.setAttribute("pathView",controleur.getPathSupprimerAbsences());
+		controleur.loadJSP(controleur.getPathMain(), request, response);
+
 	}
 	
 	//
 	private  void creer(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
 		request.setAttribute("pathView",controleur.getPathCreerAbsences());
+		controleur.loadJSP(controleur.getPathMain(), request, response);
+
 	}
 	private  void editer(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
-		request.setAttribute("pathView",controleur.getPathEditerAbsences());
+		
+		try {
+			
+			
+			//Accès aux données
+			List<Etudiant> listEtudiants;
+			List<Matiere> listMatieres;
+
+			listEtudiants = EtudiantPeer.doSelectAll();
+			listMatieres = MatierePeer.doSelectAll();
+			
+			Absence abs =AbsencePeer.retrieveByPK(Integer.parseInt(request.getParameter("id")));
+
+			//Transferer les listes à la VUE
+			request.setAttribute("etudiants",listEtudiants);
+			
+			request.setAttribute("pathView",controleur.getPathEditerAbsences());
+			request.setAttribute("absence",abs);
+			request.setAttribute("titre","Editer une absence de "+abs.getEtudiant().getPrenom()+" "+abs.getEtudiant().getNom());
+			request.setAttribute("etudiants",listEtudiants);
+			request.setAttribute("Matieres",listMatieres);
+
+			System.out.println(abs);
+			controleur.loadJSP(controleur.getPathMain(), request, response);
+
+		
+		} catch (NoRowsException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (TooManyRowsException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (NumberFormatException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (TorqueException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 }

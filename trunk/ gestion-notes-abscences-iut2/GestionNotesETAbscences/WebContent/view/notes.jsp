@@ -78,11 +78,11 @@
 		<td><%=nomMat%></td>
 		<td><%=noteEtu%></td>
 		<td>
-			<a href="notes/editer?id=<%= note.getId()%>">
+			<a href="/GestionNotesETAbscences/gestion/notes/editer?id=<%= note.getId()%>">
 				<img title="Modifier la note" alt="Modifier la note" 
 					src="<%= getServletContext().getContextPath()%>/ressources/modifier.png"/>
 			</a>
-			<a href="notes/supprimer?id=<%= note.getId()%>">
+			<a href="/GestionNotesETAbscences/gestion/notes/supprimer?id=<%= note.getId()%>">
 				<img title="Supprimer la note" alt="Supprimer la note" 
 					src="<%= getServletContext().getContextPath()%>/ressources/supprimer.png"/>
 			</a>

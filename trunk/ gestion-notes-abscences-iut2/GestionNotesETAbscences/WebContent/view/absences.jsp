@@ -81,11 +81,11 @@
 		<td><%=nomMat%></td>
 		<td><%=nbAbs%></td>
 		<td>
-			<a href="absences/editer?id=<%= absence.getId()%>">
+			<a href="/GestionNotesETAbscences/gestion/absences/editer?id=<%= absence.getId()%>">
 				<img title="Modifier l'absence" alt="Modifier l'absence" 
 					src="<%= getServletContext().getContextPath()%>/ressources/modifier.png"/>
 			</a>
-			<a href="absences/supprimer?id=<%= absence.getId()%>">
+			<a href="/GestionNotesETAbscences/gestion/absences/supprimer?id=<%= absence.getId()%>">
 				<img title="Supprimer l'absence" alt="Supprimer l'absence" 
 					src="<%= getServletContext().getContextPath()%>/ressources/supprimer.png"/>
 			</a>

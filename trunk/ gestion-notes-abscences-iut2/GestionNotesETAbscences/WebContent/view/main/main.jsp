@@ -6,6 +6,15 @@
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title><%= getServletContext().getInitParameter("title")%></title>
 <%--  on récupère les paramètres d'initialisation de la servlet --%>
+  <link rel="stylesheet" media="all" type="text/css" href="http://code.jquery.com/ui/1.10.0/themes/smoothness/jquery-ui.css">
+ 
+ <link rel="stylesheet" href="/GestionNotesETAbscences/ressources/css/jquery-ui-timepicker-addon.css" type="text/css">
+ <link rel="stylesheet" href="/GestionNotesETAbscences/ressources/css/main.css" type="text/css">
+ <script type="text/javascript" src="/GestionNotesETAbscences/ressources/js/jquery-1.8.0.min.js"></script>
+ <script type="text/javascript" src="/GestionNotesETAbscences/ressources/js/jquery-ui1.8.min.js"></script>
+ <script  type="text/JavaScript" src="/GestionNotesETAbscences/ressources/js/jquery-ui-timepicker-addon.js"></script>
+  <script  type="text/JavaScript" src="/GestionNotesETAbscences/ressources/js/jquery-ui-sliderAccess.js"></script>
+ 
 </head>
 
 <body>
@@ -15,12 +24,12 @@
 	<!-- Menu -->
 	<ul id="menu">
 	<li>
-	<a href="home">Home</a>
+	<a href="/GestionNotesETAbscences/gestion/home">Home</a>
 	</li>
 	<li>
-	<a href="absences">Absences</a>
+	<a href="/GestionNotesETAbscences/gestion/absences">Absences</a>
 	</li>
-	<li><a href="notes">Notes</a></li>
+	<li><a href="/GestionNotesETAbscences/gestion/notes">Notes</a></li>
 	</ul>
 	
 	<!-- Contenu -->
@@ -31,3 +40,12 @@
 	<p>Réalisé par Moez Askri et Colin Fournier,2012-2013, IUT2 de Grenoble</p>
 </body>
 </html>
+ <script  type="text/JavaScript">
+ $(document).ready(function() {
+	 $('#date').datetimepicker({
+		 timeFormat: "hh:mm:ss",
+		 dateFormat: "yy-mm-dd"
+	 });
+	});
+ 
+ </script>
