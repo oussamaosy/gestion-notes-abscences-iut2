@@ -18,9 +18,9 @@
 	<a href="home">Home</a>
 	</li>
 	<li>
-	<a href="editerAbsences">Absences</a>
+	<a href="absences">Absences</a>
 	</li>
-	<li><a href="editerNotes">Notes</a></li>
+	<li><a href="notes">Notes</a></li>
 	</ul>
 	
 	<!-- Contenu -->
