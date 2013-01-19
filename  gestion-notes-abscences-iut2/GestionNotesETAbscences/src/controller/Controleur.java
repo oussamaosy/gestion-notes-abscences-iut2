@@ -34,6 +34,9 @@ public class Controleur extends HttpServlet {
 	private String pathNotes;
 	private String pathCreerNotes;
 	private String pathSupprimerNotes;
+	private String pathEditerNotes;
+	private String pathEditerAbsences;
+
 	// INIT
 	public void init() throws ServletException {
 		pathMain = getServletConfig().getInitParameter("pathMain");
@@ -44,8 +47,18 @@ public class Controleur extends HttpServlet {
 		pathNotes = getServletConfig().getInitParameter("pathNotes");
 		pathSupprimerNotes = getServletConfig().getInitParameter("pathSupprimerNotes");
 		pathCreerNotes = getServletConfig().getInitParameter("pathCreerNotes");
+		pathEditerNotes= getServletConfig().getInitParameter("pathEditerNotes");;
+		pathEditerAbsences= getServletConfig().getInitParameter("pathEditerAbsences");;
 	}
 	
+	public String getPathEditerNotes() {
+		return pathEditerNotes;
+	}
+
+	public String getPathEditerAbsences() {
+		return pathEditerAbsences;
+	}
+
 	// POST
 	public void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws IOException, ServletException {

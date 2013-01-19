@@ -81,7 +81,7 @@
 		<td><%=nomMat%></td>
 		<td><%=nbAbs%></td>
 		<td>
-			<a href="absences/supprimer?id=<%= absence.getId()%>">
+			<a href="absences/editer?id=<%= absence.getId()%>">
 				<img title="Modifier l'absence" alt="Modifier l'absence" 
 					src="<%= getServletContext().getContextPath()%>/ressources/modifier.png"/>
 			</a>
