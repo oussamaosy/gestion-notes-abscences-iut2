@@ -31,22 +31,25 @@ public class Absences{
 
 	public  void traiterActions(HttpServletRequest request, HttpServletResponse response, String action, String methode) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		System.out.println("action : "+action);
-		if(action.indexOf("/")>0){
+		String act=action;
+		if(act.indexOf("/")>0){
 			//Répartition dans les controleurs
-			action = action.substring(0, action.indexOf("/"));
+			act = act.substring(act.indexOf("/")+1);
 		}else{
 			home(request, response);
-			if (methode.equals("get") && action.equals("editer")) {
+			if (methode.equals("get") && act.equals("editer")) {
 				home(request, response);
 			
-			} else if (methode.equals("get") && action.equals("supprimer")) {
+			} else if (methode.equals("get") && act.equals("supprimer")) {
 				supprimer(request, response);
 				
-			} else if (methode.equals("get") && action.equals("creer")) {
+			} else if (methode.equals("get") && act.equals("creer")) {
 				creer(request, response);
 			}
+			
 		}
+		System.out.println("action : "+act);
+
 		
 	
 }
