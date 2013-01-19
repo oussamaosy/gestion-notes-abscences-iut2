@@ -1,3 +1,4 @@
+<%@page import="model.EtudiantPeer"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <%@ page import="java.util.List"%>
@@ -7,14 +8,12 @@
 
 <jsp:useBean id="etudiant" class="model.Etudiant" scope="request" /> --%>
 			
-
-<p>BASE DE DONNEE </p>
-<form>
+<form method="post" action="editerNotes">
 	<fieldset>
 		<legend> Voir les notes </legend>
 		<input type="radio" name="choix" value="etudiant" checked>Etudiant:
 		<select name="etudiant" id="etudiant">
-			<option value="">Aucune</option>
+			<option value="0">Aucune</option>
 
 			<%
 				List<model.Etudiant> listEtudiant = (List<model.Etudiant>) request.getAttribute("etudiants");
@@ -25,7 +24,7 @@
 			%>			
 		</select><br> <input type="radio" name="choix" value="groupe">Groupe:
 		<select name="groupe" id="groupe">
-			<option value="">Aucune</option>
+			<option value="0">Aucune</option>
 			<%
 				List<model.Groupe> listGroupes = (List<model.Groupe>) request.getAttribute("groupes");
 			
@@ -37,7 +36,7 @@
 			%>		
 		</select><br> <label for="matiere">Filtrer par matière :</label> <select
 			name="matiere" id="matiere">
-			<option value="">Toutes</option>
+			<option value="0">Toutes</option>
 			<%
 				List<model.Matiere> listMatiere = (List<model.Matiere>) request.getAttribute("matieres");
 				for (model.Matiere matiere : listMatiere) {%>
@@ -50,8 +49,14 @@
 </form>
 
 <label for="avNotes">Moyenne des notes: </label>
-<input type="text" readonly id="avNotes" name="avNotes" />
+<input type="text" readonly id="avgNotes" name="avgNotes" value="<%=request.getAttribute("avgNote")%>"/>
 <br>
+
+<%
+		List<model.Note> listNote = (List<model.Note>) request.getAttribute("notes");
+		if(!listNote.isEmpty()){
+		
+%>
 
 <table>
 	<tr>
@@ -60,11 +65,38 @@
 		<th>Note</th>
 		<th></th>
 	</tr>
+	<%
+				for (model.Note note : listNote) {
+					model.Etudiant etudiant = note.getEtudiant();
+					String nomEtu = etudiant.getPrenom()+" "+etudiant.getNom();
+					model.Matiere matiere = note.getMatiere();
+					String nomMat = matiere.getIntitule();
+					double noteEtu = note.getNote();
+	%>
 	<tr>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
+		<td><%=nomEtu%></td>
+		<td><%=nomMat%></td>
+		<td><%=noteEtu%></td>
+		<td>
+			<a href="creerNotes">
+				<img title="Modifier la note" alt="Modifier la note" 
+					src="<%= getServletContext().getContextPath()%>/ressources/modifier.png"/>
+			</a>
+			<a href="supprimerNotes">
+				<img title="Supprimer la note" alt="Supprimer la note" 
+					src="<%= getServletContext().getContextPath()%>/ressources/supprimer.png"/>
+			</a>
+		</td>
 	</tr>
+	<%
+				}
+			%>
 </table>
 <br>
+<%
+	}else{
+%>
+	<span>Aucune note n'est disponible pour ce filtre.</span>
+<%
+	}
+%>
