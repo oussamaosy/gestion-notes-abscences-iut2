@@ -28,20 +28,20 @@ import model.Note;
 public class Controleur extends HttpServlet {
 	private String pathHome;
 	private String pathMain;
-	private String pathEditerAbsences;
+	private String pathAbsences;
 	private String pathCreerAbsences;
 	private String pathSupprimerAbsences;
-	private String pathEditerNotes;
+	private String pathNotes;
 	private String pathCreerNotes;
 	private String pathSupprimerNotes;
 	// INIT
 	public void init() throws ServletException {
 		pathMain = getServletConfig().getInitParameter("pathMain");
 		pathHome = getServletConfig().getInitParameter("pathHome");
-		pathEditerAbsences = getServletConfig().getInitParameter("pathEditerAbsences");
+		pathAbsences = getServletConfig().getInitParameter("pathAbsences");
 		pathSupprimerAbsences = getServletConfig().getInitParameter("pathSupprimerAbsences");
 		pathCreerAbsences = getServletConfig().getInitParameter("pathCreerAbsences");
-		pathEditerNotes = getServletConfig().getInitParameter("pathEditerNotes");
+		pathNotes = getServletConfig().getInitParameter("pathNotes");
 		pathSupprimerNotes = getServletConfig().getInitParameter("pathSupprimerNotes");
 		pathCreerNotes = getServletConfig().getInitParameter("pathCreerNotes");
 	}
@@ -62,38 +62,82 @@ public class Controleur extends HttpServlet {
 		String methode = request.getMethod().toLowerCase();
 		
 		// On récupère l'action à exécuter
-		String action = request.getPathInfo();
-		if (action == null) {
-			action = "/home";
-		}
-		
-		// Exécution action
-		if (methode.equals("get") && action.equals("/home")) {
-			doHome(request, response);
+		String actions= request.getPathInfo().substring(1);
+		String controleurName = actions;
+		System.out.println("Controleur: "+controleurName);
 
-		} else if (methode.equals("get") && action.equals("/editerAbsences")) {
-			doEditerAbsences(request, response);
-		
-		} else if (methode.equals("get") && action.equals("/supprimerAbsences")) {
-			doSupprimerAbsences(request, response);
-			
-		} else if (methode.equals("get") && action.equals("/creerAbsences")) {
-			doCreerAbsences(request, response);
-			
-		} else if (methode.equals("get") && action.equals("/editerNotes")) {
-			doEditerNotes(request, response);
-			
-		} else if (methode.equals("get") && action.equals("/supprimerNotes")) {
-			doSupprimerNotes(request, response);
-			
-		} else if (methode.equals("get") && action.equals("/creerNotes")) {
-			doCreerNotes(request, response);
-			
-		} else {
-			// Autres cas
-			doHome(request, response);
+		if(controleurName.indexOf("/")>0){
+			//Répartition dans les controleurs
+			controleurName = controleurName.substring(0, controleurName.indexOf("/"));
 		}
+			System.out.println("indexOf: "+controleurName.indexOf("/"));
+
+
+			System.out.println("Controleur: "+controleurName);
+			if(controleurName.equals("absences")){
+				
+				Absences controleurabsences = new Absences(this);
+				controleurabsences.traiterActions(request,response,actions,methode);
+				
+			}else if(controleurName.equals("notes")){
+				
+				Notes controleurNotes = new Notes(this);
+				controleurNotes.traiterActions(request,response,actions,methode);
+
+			}
+			// Exécution action
+			else if (controleurName == null) {
+				controleurName = "home";
+			}
+			else if(methode.equals("get") && controleurName.equals("home")) {
+				doHome(request, response);
+	
+			
+				
+			} else {
+				// Autres cas
+				doHome(request, response);
+			}
 	}
+
+	public String getPathMain() {
+		return pathMain;
+	}
+
+
+
+	public String getPathAbsences() {
+		return pathAbsences;
+	}
+
+
+
+	public String getPathCreerAbsences() {
+		return pathCreerAbsences;
+	}
+
+
+	public String getPathSupprimerAbsences() {
+		return pathSupprimerAbsences;
+	}
+
+
+	public String getPathNotes() {
+		return pathNotes;
+	}
+
+
+
+	public String getPathCreerNotes() {
+		return pathCreerNotes;
+	}
+
+
+	public String getPathSupprimerNotes() {
+		return pathSupprimerNotes;
+	}
+
+
 
 	private void doHome(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
@@ -101,166 +145,9 @@ public class Controleur extends HttpServlet {
 			loadJSP(pathMain, request, response);
 	}
 
-	//
-	private void doEditerAbsences(HttpServletRequest request,
-			HttpServletResponse response) throws ServletException, IOException {
-		request.setAttribute("pathView",pathEditerAbsences);
-		System.out.println(request.getParameter("choix"));
-		// on récupère les données du post
-		String choix = "groupe";//request.getParameter("choix");
-		int choixMatiere = 0;//Integer.parseInt(request.getParameter("matiere"));
-		
-		List<Etudiant> listEtudiants;
-		List<Groupe> listGroupes;
-		List<Matiere> listMatiere;
-		
-		try {
-			/*************Remplissage du formulaire***************/
-			//Accès aux données
-			listEtudiants = EtudiantPeer.doSelectAll();
-			listGroupes = GroupePeer.doSelectAll();
-			listMatiere = MatierePeer.doSelectAll();
-			
-			//Transferer les listes à la VUE
-			request.setAttribute("etudiants",listEtudiants);
-			request.setAttribute("groupes",listGroupes);
-			request.setAttribute("matieres",listMatiere);
-
-			/*************Remplissage du tableau******************/
-	    	List<Absence> absences = new ArrayList<Absence>();
-			if(choix=="etudiant"){
-				int choixEtudiant = 1;//Integer.parseInt(request.getParameter("etudiant"));
-				if(choixEtudiant!=0){
-					if(choixMatiere!=0){
-						absences = Absence.getAbsencesEtudiantForMatiere(choixEtudiant, choixMatiere);
-					}else{
-						absences = Absence.getAbsencesEtudiant(choixEtudiant);
-					}
-				}
-			}else{
-				int choixGroupe = 1;//Integer.parseInt(request.getParameter("groupe"));
-				if(choixGroupe!=0){
-					if(choixMatiere!=0){
-						absences = Absence.getAbsencesGroupeForMatiere(choixGroupe, choixMatiere);
-					}else{
-						absences = Absence.getAbsencesGroupe(choixGroupe);
-					}
-				}
-			}
-			//Transferer les notes
-			request.setAttribute("absences",absences);
-			
-			/*************Remplissage de la moyenne******************/
-			
-			int nbAbs = 0;
-			int nbHeures = 0;
-			for(Absence absence : absences){
-				nbAbs = nbAbs + 1;
-				nbHeures = nbHeures + absence.getNbheures();
-			}
-			
-			//Transferer la moyenne des notes
-			request.setAttribute("nbAbs",nbAbs);
-			request.setAttribute("nbHeures",nbHeures);
-			
-			loadJSP(pathMain, request, response);
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-	}
 	
-	//
-	private void doSupprimerAbsences(HttpServletRequest request,
-			HttpServletResponse response) throws ServletException, IOException {
-		request.setAttribute("pathView",pathSupprimerAbsences);
-	}
 	
-	//
-	private void doCreerAbsences(HttpServletRequest request,
-			HttpServletResponse response) throws ServletException, IOException {
-		request.setAttribute("pathView",pathCreerAbsences);
-	}
 	
-	//
-	private void doEditerNotes(HttpServletRequest request,
-			HttpServletResponse response) throws ServletException, IOException {
-		
-		request.setAttribute("pathView",pathEditerNotes);
-		System.out.println(request.getParameter("choix"));
-		// on récupère les données du post
-		String choix = "groupe";//request.getParameter("choix");
-		int choixMatiere = 0;//Integer.parseInt(request.getParameter("matiere"));
-		
-		List<Etudiant> listEtudiants;
-		List<Groupe> listGroupes;
-		List<Matiere> listMatiere;
-		
-		try {
-			/*************Remplissage du formulaire***************/
-			//Accès aux données
-			listEtudiants = EtudiantPeer.doSelectAll();
-			listGroupes = GroupePeer.doSelectAll();
-			listMatiere = MatierePeer.doSelectAll();
-			
-			//Transferer les listes à la VUE
-			request.setAttribute("etudiants",listEtudiants);
-			request.setAttribute("groupes",listGroupes);
-			request.setAttribute("matieres",listMatiere);
-
-			/*************Remplissage du tableau******************/
-	    	List<Note> notes = new ArrayList<Note>();
-			if(choix=="etudiant"){
-				int choixEtudiant = 1;//Integer.parseInt(request.getParameter("etudiant"));
-				if(choixEtudiant!=0){
-					if(choixMatiere!=0){
-						notes = Note.getNotesEtudiantForMatiere(choixEtudiant, choixMatiere);
-					}else{
-						notes = Note.getNotesEtudiant(choixEtudiant);
-					}
-				}
-			}else{
-				int choixGroupe = 1;//Integer.parseInt(request.getParameter("groupe"));
-				if(choixGroupe!=0){
-					if(choixMatiere!=0){
-						notes = Note.getNotesGroupeForMatiere(choixGroupe, choixMatiere);
-					}else{
-						notes = Note.getNotesGroupe(choixGroupe);
-					}
-				}
-			}
-			//Transferer les notes
-			request.setAttribute("notes",notes);
-			
-			/*************Remplissage de la moyenne******************/
-			
-			float avgNote = 0;
-			for(Note note : notes){
-				avgNote = (float) (avgNote + note.getNote());
-			}
-			avgNote = avgNote/notes.size();
-			//Transferer la moyenne des notes
-			request.setAttribute("avgNote",avgNote);
-			
-			loadJSP(pathMain, request, response);
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-	}
-	
-	//
-	private void doSupprimerNotes(HttpServletRequest request,
-			HttpServletResponse response) throws ServletException, IOException {
-		request.setAttribute("pathView",pathSupprimerNotes);
-	}
-	
-	//
-	private void doCreerNotes(HttpServletRequest request,
-			HttpServletResponse response) throws ServletException, IOException {
-		request.setAttribute("pathView",pathCreerNotes);
-	}
-
 
 	public void loadJSP(String url, HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {

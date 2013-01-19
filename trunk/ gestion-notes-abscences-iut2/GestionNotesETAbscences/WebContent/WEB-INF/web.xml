@@ -19,8 +19,8 @@
 			<param-value>/view/main/main.jsp</param-value>
 		</init-param>
 		<init-param>
-			<param-name>pathEditerAbsences</param-name>
-			<param-value>/view/editerAbsences.jsp</param-value>
+			<param-name>pathAbsences</param-name>
+			<param-value>/view/absences.jsp</param-value>
 		</init-param>
 		<init-param>
 			<param-name>pathCreerAbsences</param-name>
@@ -31,8 +31,8 @@
 			<param-value>/view/supprimerAbsences.jsp</param-value>
 		</init-param>
 		<init-param>
-			<param-name>pathEditerNotes</param-name>
-			<param-value>/view/editerNotes.jsp</param-value>
+			<param-name>pathNotes</param-name>
+			<param-value>/view/notes.jsp</param-value>
 		</init-param>
 		<init-param>
 			<param-name>pathCreerNotes</param-name>
