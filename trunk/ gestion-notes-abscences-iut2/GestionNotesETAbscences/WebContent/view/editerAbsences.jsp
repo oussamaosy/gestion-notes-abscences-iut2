@@ -9,7 +9,7 @@
 <jsp:useBean id="absence" class="model.Absence" scope="request" />
 
 <h2> <%= request.getAttribute("titre") %> </h2>
-<form>
+<form method="post" action="<%=request.getAttribute("actionForm")%>">
 	<table>
 		<tbody>
 		<tr>
@@ -31,10 +31,10 @@
 			</td>
 		</tr>
 		<tr>
-			<th><label for="etudiantId" >Matiere :</label></th>
+			<th><label for="matiereId" >Matiere :</label></th>
 			
 			<td>
-				<select name="MatiereId" id="etudiant">
+				<select name="matiereId" id="etudiant">
 				<option value="0">Aucune</option>
 					<% List<model.Matiere> listMatiere = (List<model.Matiere>) request.getAttribute("Matieres");
 					int matId =((model.Absence)request.getAttribute("absence")).getMatiereId();
@@ -54,5 +54,5 @@
 		</tfoot>	
 	</table>
 			 
-	
+	<input type="hidden" value='<jsp:getProperty name="absence" property="id" />' />
 </form>
