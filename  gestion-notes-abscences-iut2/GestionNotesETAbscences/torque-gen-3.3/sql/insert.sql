@@ -27,13 +27,13 @@ INSERT INTO etudiant (nom,prenom,groupe_id) VALUES ('Mathieu', 'Gatumel', 2);
 
 #  --------------------Insert des absences--------------------------------------
 
-INSERT INTO absence (nbheures,etudiant_id,matiere_id) VALUES (1,5,2);
-INSERT INTO absence (nbheures,etudiant_id,matiere_id) VALUES (1,1,2);
-INSERT INTO absence (nbheures,etudiant_id,matiere_id) VALUES (3,2,3);
-INSERT INTO absence (nbheures,etudiant_id,matiere_id) VALUES (2,4,5);
-INSERT INTO absence (nbheures,etudiant_id,matiere_id) VALUES (2,4,4);
-INSERT INTO absence (nbheures,etudiant_id,matiere_id) VALUES (4,2,6);
-INSERT INTO absence (nbheures,etudiant_id,matiere_id) VALUES (5,1,1);
+INSERT INTO absence (nbheures,date,etudiant_id,matiere_id) VALUES (1,'2012-10-4 14:00:00',5,2);
+INSERT INTO absence (nbheures,date,etudiant_id,matiere_id) VALUES (1,'2012-12-16 8:00:00',1,2);
+INSERT INTO absence (nbheures,date,etudiant_id,matiere_id) VALUES (3,'2012-11-5 14:00:00',2,3);
+INSERT INTO absence (nbheures,date,etudiant_id,matiere_id) VALUES (2,'2013-1-4 13:00:00',4,5);
+INSERT INTO absence (nbheures,date,etudiant_id,matiere_id) VALUES (2,'2013-10-4 9:00:00',4,4);
+INSERT INTO absence (nbheures,date,etudiant_id,matiere_id) VALUES (4,'2012-10-4 13:00:00',2,6);
+INSERT INTO absence (nbheures,date,etudiant_id,matiere_id) VALUES (5,'2013-1-4 11:00:00',1,1);
 
 # --------------------Insert des notes--------------------------------------
 

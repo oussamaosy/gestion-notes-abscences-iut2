@@ -59,10 +59,13 @@ public class Notes {
 			HttpServletResponse response) throws ServletException, IOException {
 		
 		request.setAttribute("pathView",controleur.getPathNotes());
-		System.out.println(request.getParameter("choix"));
 		// on récupère les données du post
-		String choix = "groupe";//request.getParameter("choix");
-		int choixMatiere = 0;//Integer.parseInt(request.getParameter("matiere"));
+		String choix = "choix";
+		if(request.getParameter("choix")!=null)
+			choix = request.getParameter("choix");
+		int choixMatiere = 0;
+		if(request.getParameter("matiere")!=null)
+			choixMatiere = Integer.parseInt(request.getParameter("matiere"));
 		
 		List<Etudiant> listEtudiants;
 		List<Groupe> listGroupes;
@@ -82,8 +85,11 @@ public class Notes {
 
 			/*************Remplissage du tableau******************/
 	    	List<Note> notes = new ArrayList<Note>();
-			if(choix=="etudiant"){
-				int choixEtudiant = 1;//Integer.parseInt(request.getParameter("etudiant"));
+	    	int choixEtudiant = 0;
+	    	int choixGroupe = 0;
+			if(choix.equalsIgnoreCase("etudiant")){
+				if(request.getParameter("etudiant")!=null)
+					choixEtudiant = Integer.parseInt(request.getParameter("etudiant"));
 				if(choixEtudiant!=0){
 					if(choixMatiere!=0){
 						notes = Note.getNotesEtudiantForMatiere(choixEtudiant, choixMatiere);
@@ -91,8 +97,9 @@ public class Notes {
 						notes = Note.getNotesEtudiant(choixEtudiant);
 					}
 				}
-			}else{
-				int choixGroupe = 1;//Integer.parseInt(request.getParameter("groupe"));
+			}else if(choix.equalsIgnoreCase("groupe")){
+				if(request.getParameter("groupe")!=null)
+					choixGroupe = Integer.parseInt(request.getParameter("groupe"));
 				if(choixGroupe!=0){
 					if(choixMatiere!=0){
 						notes = Note.getNotesGroupeForMatiere(choixGroupe, choixMatiere);
@@ -100,6 +107,7 @@ public class Notes {
 						notes = Note.getNotesGroupe(choixGroupe);
 					}
 				}
+				System.out.println("numGroupe: "+choixGroupe);
 			}
 			//Transferer les notes
 			request.setAttribute("notes",notes);
@@ -107,12 +115,19 @@ public class Notes {
 			/*************Remplissage de la moyenne******************/
 			
 			float avgNote = 0;
-			for(Note note : notes){
-				avgNote = (float) (avgNote + note.getNote());
+			if(!notes.isEmpty()){
+				for(Note note : notes){
+					avgNote = (float) (avgNote + note.getNote());
+				}
+				avgNote = avgNote/notes.size();
 			}
-			avgNote = avgNote/notes.size();
+			
 			//Transferer la moyenne des notes
 			request.setAttribute("avgNote",avgNote);
+			request.setAttribute("choix",choix);
+			request.setAttribute("choixMatiere",choixMatiere);
+			request.setAttribute("choixEtudiant",choixEtudiant);
+			request.setAttribute("choixGroupe",choixGroupe);
 			
 			controleur.loadJSP(controleur.getPathMain(), request, response);
 		} catch (Exception e) {
