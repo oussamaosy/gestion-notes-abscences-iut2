@@ -91,6 +91,15 @@
 	<%
 				}
 			%>
+	<tr>
+		<td>
+				<a href="/GestionNotesETAbscences/gestion/notes/ajouter">
+					<img title="Ajouter une note" alt="Ajouter une note" 
+						src="<%= getServletContext().getContextPath()%>/ressources/add.png"/> 
+						Ajouter une note
+				</a>
+		</td>
+	</tr>		
 </table>
 <br>
 <%

@@ -58,6 +58,9 @@ public class Absences{
 			} else if (methode.equals("get") && act.equals("supprimer")) {
 				supprimer(request, response);
 				
+			} else if (methode.equals("get") && act.equals("ajouter")) {
+				supprimer(request, response);
+				
 			} else if (methode.equals("post") && act.equals("creer")) {
 				creer(request, response);
 			
@@ -146,8 +149,17 @@ public class Absences{
 	//
 	private  void supprimer(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
-		request.setAttribute("pathView",controleur.getPathSupprimerAbsences());
-		controleur.loadJSP(controleur.getPathMain(), request, response);
+		String id= request.getParameter("id");
+		if (id!=null){
+			try {
+				Absence abs =AbsencePeer.retrieveByPK(Integer.parseInt(id));
+				AbsencePeer.doDelete(abs);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		home(request, response);
 
 	}
 	
@@ -156,24 +168,40 @@ public class Absences{
 			HttpServletResponse response) throws ServletException, IOException {
 		request.setAttribute("pathView",controleur.getPathCreerAbsences());
 		try {
-			int id= Integer.parseInt(request.getParameter("id"));
-			int nbheures=Integer.parseInt(request.getParameter("nbheures"));
-			int etudiantId =Integer.parseInt(request.getParameter("etudiantId"));
-			int matiereId=Integer.parseInt(request.getParameter("matiereId"));
+			if(controleur.checkForm(attributs, request)){
+				request.setAttribute("pathView",controleur.getPathEditerAbsences());
+
+				System.out.println("SAUVEGARDE: "+request.getParameter("id"));
+
+				
+				Absence abs =AbsencePeer.retrieveByPK(Integer.parseInt(request.getParameter("id")));
+				abs.setNbheures(Integer.parseInt(request.getParameter("nbheures")));
+				abs.setEtudiant(EtudiantPeer.retrieveByPK(Integer.parseInt(request.getParameter("etudiantId"))));
+				abs.setMatiere(MatierePeer.retrieveByPK(Integer.parseInt(request.getParameter("matiereId"))));
+
+				System.out.println(request.getParameter("date").substring(0, 10));
+				System.out.println(request.getParameter("date").substring(11, 16));
+				DateFormat formatter ;
+				formatter = new SimpleDateFormat("yyyy-mm-dd hh:mm"); 
+				Date date;
+				date = (Date)formatter.parse(request.getParameter("date"));
 			
-			//Date date=Date.valueOf(request.getParameter("date"));
-			
-			Absence abs =AbsencePeer.retrieveByPK(id);
-			abs.setNbheures(nbheures);
-			abs.setEtudiant(EtudiantPeer.retrieveByPK(etudiantId));
-			abs.setMatiere(MatierePeer.retrieveByPK(matiereId));
-			System.out.println(abs);
-			//abs.save();
+				abs.setDate(date);
+				
+				abs.save();
+
+				System.out.println("SAUVEGARDE");
+				System.out.println(abs);
+				editer(request,response);
+
+			}else{
+				System.out.println("Formu");
+				editer(request,response);
+			}
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		controleur.loadJSP(controleur.getPathMain(), request, response);
 
 	}
 	private  void modifier(HttpServletRequest request,
@@ -246,18 +274,39 @@ public class Absences{
 			controleur.loadJSP(controleur.getPathMain(), request, response);
 
 		
-		} catch (NoRowsException e) {
+		}catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		} catch (TooManyRowsException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (NumberFormatException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (TorqueException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+		}
+	}
+	private  void ajouter(HttpServletRequest request,
+			HttpServletResponse response) throws ServletException, IOException {
+		
+		try {
+			
+			
+			//Accès aux données
+			List<Etudiant> listEtudiants;
+			List<Matiere> listMatieres;
+
+			listEtudiants = EtudiantPeer.doSelectAll();
+			listMatieres = MatierePeer.doSelectAll();
+			
+
+			//Transferer les listes à la VUE
+			request.setAttribute("etudiants",listEtudiants);
+			
+			request.setAttribute("pathView",controleur.getPathEditerAbsences());
+			request.setAttribute("absence",null);
+			request.setAttribute("titre","Ajouter une absence");
+			request.setAttribute("actionForm","modifier");
+
+			request.setAttribute("etudiants",listEtudiants);
+			request.setAttribute("Matieres",listMatieres);
+
+			controleur.loadJSP(controleur.getPathMain(), request, response);
+
+		
 		}catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

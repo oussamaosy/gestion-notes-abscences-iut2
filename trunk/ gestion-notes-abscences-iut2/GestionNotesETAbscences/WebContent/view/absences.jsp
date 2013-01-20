@@ -91,9 +91,19 @@
 			</a>
 		</td>
 	</tr>
+	
 	<%
 				}
 			%>
+	<tr>
+		<td>
+				<a href="/GestionNotesETAbscences/gestion/absences/ajouter">
+					<img title="Ajouter une absence" alt="Ajouter une absence" 
+						src="<%= getServletContext().getContextPath()%>/ressources/add.png"/> 
+						Ajouter une note
+				</a>
+		</td>
+	</tr>
 </table>
 <br>
 <%
