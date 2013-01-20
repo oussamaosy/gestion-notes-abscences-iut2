@@ -46,7 +46,8 @@
 		</tr>
 		<tr>
 			<th><label for="date" >Date (AAAA-MM-JJ HH:mm:ss) : </label></th>
-			<td><input id="date" name="date" type="text" value='<jsp:getProperty name="absence" property="date" />' /></td>
+			
+			<td><input id="date" name="date" type="text" value='<%= ((model.Absence)request.getAttribute("absence")).getDate().toString().substring(0, 16) %>' /></td>
 		</tr>
 		</tbody>
 		<tfoot>
@@ -54,5 +55,5 @@
 		</tfoot>	
 	</table>
 			 
-	<input type="hidden" value='<jsp:getProperty name="absence" property="id" />' />
+	<input type="hidden" name="id" value='<jsp:getProperty name="absence" property="id" />' />
 </form>

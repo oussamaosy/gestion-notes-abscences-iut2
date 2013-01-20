@@ -1,6 +1,9 @@
 package controller;
 
 import java.io.IOException;
+import java.sql.Timestamp;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -28,10 +31,16 @@ import model.MatierePeer;
 public class Absences{
 
 	private Controleur controleur;
-
+	private List<String> attributs ;
 	public Absences(Controleur controleur) {
 		// TODO Auto-generated constructor stub
 		this.controleur=controleur;
+		attributs= new ArrayList<String>();
+		attributs.add("nbheures");
+		attributs.add("etudiantId");
+		attributs.add("matiereId");
+		attributs.add("date");
+		attributs.add("id");
 
 	}
 
@@ -43,15 +52,17 @@ public class Absences{
 		if(act.indexOf("/")>0){
 			//Répartition dans les controleurs
 			act = act.substring(act.indexOf("/")+1);
-			System.out.println(methode.equals("get")&& act.equals("editer"));
 			if (methode.equals("get") && act.equals("editer")) {
 				editer(request, response);
 			
 			} else if (methode.equals("get") && act.equals("supprimer")) {
 				supprimer(request, response);
 				
-			} else if (methode.equals("get") && act.equals("creer")) {
+			} else if (methode.equals("post") && act.equals("creer")) {
 				creer(request, response);
+			
+			} else if(methode.equals("post") && act.equals("modifier")) {
+				modifier(request, response);
 			
 			}
 		}else{
@@ -144,28 +155,66 @@ public class Absences{
 	private  void creer(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
 		request.setAttribute("pathView",controleur.getPathCreerAbsences());
-		controleur.loadJSP(controleur.getPathMain(), request, response);
 		try {
-		int id= Integer.parseInt(request.getParameter("id"));
-		int nbheures=Integer.parseInt(request.getParameter("nbheures"));
-		int etudiantId =Integer.parseInt(request.getParameter("etudiantId"));
-		int matiereId=Integer.parseInt(request.getParameter("matiereId"));
-		Date date=new Date(request.getParameter("date"));
-		Absence abs =AbsencePeer.retrieveByPK(id);
-		abs.setNbheures(nbheures);
-		
-		abs.setEtudiant(EtudiantPeer.retrieveByPK(etudiantId));
-		abs.setMatiere(MatierePeer.retrieveByPK(matiereId));
-		} catch (NoRowsException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (TooManyRowsException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (TorqueException e) {
+			int id= Integer.parseInt(request.getParameter("id"));
+			int nbheures=Integer.parseInt(request.getParameter("nbheures"));
+			int etudiantId =Integer.parseInt(request.getParameter("etudiantId"));
+			int matiereId=Integer.parseInt(request.getParameter("matiereId"));
+			
+			//Date date=Date.valueOf(request.getParameter("date"));
+			
+			Absence abs =AbsencePeer.retrieveByPK(id);
+			abs.setNbheures(nbheures);
+			abs.setEtudiant(EtudiantPeer.retrieveByPK(etudiantId));
+			abs.setMatiere(MatierePeer.retrieveByPK(matiereId));
+			System.out.println(abs);
+			//abs.save();
+		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		controleur.loadJSP(controleur.getPathMain(), request, response);
+
+	}
+	private  void modifier(HttpServletRequest request,
+			HttpServletResponse response) throws ServletException, IOException {
+		try {
+			if(controleur.checkForm(attributs, request)){
+				request.setAttribute("pathView",controleur.getPathEditerAbsences());
+
+				System.out.println("SAUVEGARDE: "+request.getParameter("id"));
+
+				
+				Absence abs =AbsencePeer.retrieveByPK(Integer.parseInt(request.getParameter("id")));
+				abs.setNbheures(Integer.parseInt(request.getParameter("nbheures")));
+				abs.setEtudiant(EtudiantPeer.retrieveByPK(Integer.parseInt(request.getParameter("etudiantId"))));
+				abs.setMatiere(MatierePeer.retrieveByPK(Integer.parseInt(request.getParameter("matiereId"))));
+
+				System.out.println(request.getParameter("date").substring(0, 10));
+				System.out.println(request.getParameter("date").substring(11, 16));
+				DateFormat formatter ;
+				formatter = new SimpleDateFormat("yyyy-mm-dd hh:mm"); 
+				Date date;
+				date = (Date)formatter.parse(request.getParameter("date"));
+			
+				abs.setDate(date);
+				
+				abs.save();
+
+				System.out.println("SAUVEGARDE");
+				System.out.println(abs);
+				editer(request,response);
+
+			}else{
+				System.out.println("Formu");
+				editer(request,response);
+			}
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+
 	}
 	private  void editer(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {

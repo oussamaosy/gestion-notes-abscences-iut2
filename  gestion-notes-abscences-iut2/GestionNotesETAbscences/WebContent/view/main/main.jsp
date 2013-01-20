@@ -43,7 +43,7 @@
  <script  type="text/JavaScript">
  $(document).ready(function() {
 	 $('#date').datetimepicker({
-		 timeFormat: "hh:mm:ss",
+		 timeFormat: "hh:mm",
 		 dateFormat: "yy-mm-dd"
 	 });
 	});
