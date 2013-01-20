@@ -170,6 +170,15 @@ public class Controleur extends HttpServlet {
 		RequestDispatcher rd = sc.getRequestDispatcher(url);
 		rd.forward(request, response);
 	}
+	public boolean checkForm(List<String> attributs,HttpServletRequest request){
+		boolean ok=true;
+		for (String  attrName: attributs){
+			if (request.getParameter(attrName)==null){
+				ok =false;
+			}
+		}
+		return ok;
+	}
 
 
 }
