@@ -48,7 +48,7 @@
 			primaryKey="true" type="INTEGER" description="Absence Id" />
 		<column name="nbheures" required="true" type="INTEGER"
 			description="nombre d'heures de l'absence" />
-		<column name="date" required="true" type="DATE"
+		<column name="date" required="true" type="TIMESTAMP"
 			description="Date" />
 		<column name="etudiant_id" required="false" type="INTEGER"
 			description="Foreign Key Etudiant" />

@@ -80,13 +80,14 @@ public class Controleur extends HttpServlet {
 		System.out.println("Controleur: "+controleurName);
 
 		if(controleurName.indexOf("/")>0){
-			//Répartition dans les controleurs
 			controleurName = controleurName.substring(0, controleurName.indexOf("/"));
 		}
 			System.out.println("indexOf: "+controleurName.indexOf("/"));
 
 
 			System.out.println("Controleur: "+controleurName);
+			//Répartition dans les controleurs
+
 			if(controleurName.equals("absences")){
 				
 				Absences controleurabsences = new Absences(this);
