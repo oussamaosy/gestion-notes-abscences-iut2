@@ -2,6 +2,7 @@ package controller;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -144,7 +145,27 @@ public class Absences{
 			HttpServletResponse response) throws ServletException, IOException {
 		request.setAttribute("pathView",controleur.getPathCreerAbsences());
 		controleur.loadJSP(controleur.getPathMain(), request, response);
-
+		try {
+		int id= Integer.parseInt(request.getParameter("id"));
+		int nbheures=Integer.parseInt(request.getParameter("nbheures"));
+		int etudiantId =Integer.parseInt(request.getParameter("etudiantId"));
+		int matiereId=Integer.parseInt(request.getParameter("matiereId"));
+		Date date=new Date(request.getParameter("date"));
+		Absence abs =AbsencePeer.retrieveByPK(id);
+		abs.setNbheures(nbheures);
+		
+		abs.setEtudiant(EtudiantPeer.retrieveByPK(etudiantId));
+		abs.setMatiere(MatierePeer.retrieveByPK(matiereId));
+		} catch (NoRowsException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (TooManyRowsException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (TorqueException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 	private  void editer(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
@@ -167,6 +188,8 @@ public class Absences{
 			request.setAttribute("pathView",controleur.getPathEditerAbsences());
 			request.setAttribute("absence",abs);
 			request.setAttribute("titre","Editer une absence de "+abs.getEtudiant().getPrenom()+" "+abs.getEtudiant().getNom());
+			request.setAttribute("actionForm","modifier");
+
 			request.setAttribute("etudiants",listEtudiants);
 			request.setAttribute("Matieres",listMatieres);
 
