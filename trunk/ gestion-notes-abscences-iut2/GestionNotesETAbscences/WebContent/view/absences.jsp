@@ -8,10 +8,11 @@
 
 <jsp:useBean id="etudiant" class="model.Etudiant" scope="request" /> --%>
 			
-<form method="post" action="editerAbsences">
+<form method="post" action="absences">
 	<fieldset>
 		<legend> Voir les absences </legend>
-		<input type="radio" name="choix" value="etudiant" checked>Etudiant:
+		<input type="radio" name="choix" value="etudiant" checked>
+		<label for="etudiant">Etudiant:</label>
 		<select name="etudiant" id="etudiant">
 			<option value="0">Aucune</option>
 
@@ -22,7 +23,8 @@
 			<%
 				}
 			%>			
-		</select><br> <input type="radio" name="choix" value="groupe">Groupe:
+		</select><br> <input type="radio" name="choix" value="groupe">
+		<label for="groupe">Groupe:</label>
 		<select name="groupe" id="groupe">
 			<option value="0">Aucune</option>
 			<%

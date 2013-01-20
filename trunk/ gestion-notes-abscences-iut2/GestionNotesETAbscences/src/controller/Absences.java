@@ -83,8 +83,10 @@ public class Absences{
 		request.setAttribute("pathView",controleur.getPathAbsences());
 		System.out.println(request.getParameter("choix"));
 		// on récupère les données du post
-		String choix = "groupe";//request.getParameter("choix");
-		int choixMatiere = 0;//Integer.parseInt(request.getParameter("matiere"));
+		String choix = request.getParameter("choix");
+		int choixMatiere = 0;
+		if(request.getParameter("matiere")!=null)
+			choixMatiere = Integer.parseInt(request.getParameter("matiere"));
 		
 		List<Etudiant> listEtudiants;
 		List<Groupe> listGroupes;
@@ -105,7 +107,10 @@ public class Absences{
 			/*************Remplissage du tableau******************/
 	    	List<Absence> absences = new ArrayList<Absence>();
 			if(choix=="etudiant"){
-				int choixEtudiant = 1;//Integer.parseInt(request.getParameter("etudiant"));
+				int choixEtudiant = 0;
+				System.out.println(request.getParameter("etudiant"));
+				if(request.getParameter("etudiant")!=null)
+					choixEtudiant = Integer.parseInt(request.getParameter("etudiant"));
 				if(choixEtudiant!=0){
 					if(choixMatiere!=0){
 						absences = Absence.getAbsencesEtudiantForMatiere(choixEtudiant, choixMatiere);
@@ -114,7 +119,9 @@ public class Absences{
 					}
 				}
 			}else{
-				int choixGroupe = 1;//Integer.parseInt(request.getParameter("groupe"));
+				int choixGroupe = 0;
+				if(request.getParameter("groupe")!=null)
+					choixGroupe = Integer.parseInt(request.getParameter("groupe"));
 				if(choixGroupe!=0){
 					if(choixMatiere!=0){
 						absences = Absence.getAbsencesGroupeForMatiere(choixGroupe, choixMatiere);
@@ -130,9 +137,11 @@ public class Absences{
 			
 			int nbAbs = 0;
 			int nbHeures = 0;
-			for(Absence absence : absences){
-				nbAbs = nbAbs + 1;
-				nbHeures = nbHeures + absence.getNbheures();
+			if(!absences.isEmpty()){
+				for(Absence absence : absences){
+					nbAbs = nbAbs + 1;
+					nbHeures = nbHeures + absence.getNbheures();
+				}
 			}
 			
 			//Transferer la moyenne des notes
