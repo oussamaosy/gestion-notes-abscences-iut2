@@ -173,11 +173,21 @@ public class Controleur extends HttpServlet {
 	public boolean checkForm(List<String> attributs,HttpServletRequest request){
 		boolean ok=true;
 		for (String  attrName: attributs){
-			if (request.getParameter(attrName)==null){
+
+			if (request.getParameter(attrName).isEmpty()){
 				ok =false;
 			}
 		}
 		return ok;
+	}
+
+	public void reinitialiserForm(List<String> attributs,
+			HttpServletRequest request) {
+		for (String  attrName: attributs){
+			request.setAttribute(attrName,request.getParameter(attrName));
+		}
+		// TODO Auto-generated method stub
+		
 	}
 
 

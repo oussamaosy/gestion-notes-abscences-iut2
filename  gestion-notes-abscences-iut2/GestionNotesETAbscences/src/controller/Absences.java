@@ -59,7 +59,7 @@ public class Absences{
 				supprimer(request, response);
 				
 			} else if (methode.equals("get") && act.equals("ajouter")) {
-				supprimer(request, response);
+				ajouter(request, response);
 				
 			} else if (methode.equals("post") && act.equals("creer")) {
 				creer(request, response);
@@ -177,13 +177,15 @@ public class Absences{
 			HttpServletResponse response) throws ServletException, IOException {
 		request.setAttribute("pathView",controleur.getPathCreerAbsences());
 		try {
-			if(controleur.checkForm(attributs, request)){
+			List<String> attributsForm = attributs;
+			attributsForm.remove("id");
+			if(controleur.checkForm(attributsForm, request)){
 				request.setAttribute("pathView",controleur.getPathEditerAbsences());
 
-				System.out.println("SAUVEGARDE: "+request.getParameter("id"));
+				System.out.println("SAUVEGARDE: "+request.getParameter("etudiantId"));
 
 				
-				Absence abs =AbsencePeer.retrieveByPK(Integer.parseInt(request.getParameter("id")));
+				Absence abs =new Absence();
 				abs.setNbheures(Integer.parseInt(request.getParameter("nbheures")));
 				abs.setEtudiant(EtudiantPeer.retrieveByPK(Integer.parseInt(request.getParameter("etudiantId"))));
 				abs.setMatiere(MatierePeer.retrieveByPK(Integer.parseInt(request.getParameter("matiereId"))));
@@ -201,11 +203,13 @@ public class Absences{
 
 				System.out.println("SAUVEGARDE");
 				System.out.println(abs);
-				editer(request,response);
+				home(request,response);
 
 			}else{
 				System.out.println("Formu");
-				editer(request,response);
+				request.setAttribute("msgErreur","Des champs sont manquants");
+				controleur.reinitialiserForm(attributsForm, request);
+				ajouter(request,response);
 			}
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
@@ -240,11 +244,13 @@ public class Absences{
 
 				System.out.println("SAUVEGARDE");
 				System.out.println(abs);
-				editer(request,response);
+				home(request,response);
 
 			}else{
 				System.out.println("Formu");
 				editer(request,response);
+				request.setAttribute("msgErreur","Des champs sont manquants");
+
 			}
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
@@ -278,6 +284,7 @@ public class Absences{
 
 			request.setAttribute("etudiants",listEtudiants);
 			request.setAttribute("Matieres",listMatieres);
+			request.setAttribute("isNew",false);
 
 			System.out.println(abs);
 			controleur.loadJSP(controleur.getPathMain(), request, response);
@@ -308,11 +315,11 @@ public class Absences{
 			request.setAttribute("pathView",controleur.getPathEditerAbsences());
 			request.setAttribute("absence",null);
 			request.setAttribute("titre","Ajouter une absence");
-			request.setAttribute("actionForm","modifier");
+			request.setAttribute("actionForm","creer");
 
 			request.setAttribute("etudiants",listEtudiants);
 			request.setAttribute("Matieres",listMatieres);
-
+			request.setAttribute("isNew",true);
 			controleur.loadJSP(controleur.getPathMain(), request, response);
 
 		
