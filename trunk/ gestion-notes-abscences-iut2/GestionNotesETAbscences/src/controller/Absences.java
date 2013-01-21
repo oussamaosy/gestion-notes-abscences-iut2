@@ -115,9 +115,9 @@ public class Absences{
 					choixEtudiant = Integer.parseInt(request.getParameter("etudiantId"));
 				if(choixEtudiant!=0){
 					if(choixMatiere!=0){
-						absences = Absence.getAbsencesEtudiantForMatiere(choixEtudiant, choixMatiere);
+						absences = AbsencePeer.getAbsencesEtudiantForMatiere(choixEtudiant, choixMatiere);
 					}else{
-						absences = Absence.getAbsencesEtudiant(choixEtudiant);
+						absences = AbsencePeer.getAbsencesEtudiant(choixEtudiant);
 					}
 				}
 			}else if((request.getParameter("groupeId")!=null && !request.getParameter("groupeId").equals("0"))){
@@ -125,9 +125,9 @@ public class Absences{
 					choixGroupe = Integer.parseInt(request.getParameter("groupeId"));
 				if(choixGroupe!=0){
 					if(choixMatiere!=0){
-						absences = Absence.getAbsencesGroupeForMatiere(choixGroupe, choixMatiere);
+						absences = AbsencePeer.getAbsencesGroupeForMatiere(choixGroupe, choixMatiere);
 					}else{
-						absences = Absence.getAbsencesGroupe(choixGroupe);
+						absences = AbsencePeer.getAbsencesGroupe(choixGroupe);
 					}
 				}
 			}

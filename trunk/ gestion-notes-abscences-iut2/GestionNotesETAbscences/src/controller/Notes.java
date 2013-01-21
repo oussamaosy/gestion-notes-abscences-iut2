@@ -107,18 +107,18 @@ public class Notes {
 					choixEtudiant = Integer.parseInt(request.getParameter("etudiantId"));
 				if(choixEtudiant!=0){
 					if(choixMatiere!=0){
-						notes = Note.getNotesEtudiantForMatiere(choixEtudiant, choixMatiere);
+						notes = NotePeer.getNotesEtudiantForMatiere(choixEtudiant, choixMatiere);
 					}else{
-						notes = Note.getNotesEtudiant(choixEtudiant);
+						notes = NotePeer.getNotesEtudiant(choixEtudiant);
 					}
 				}
 			}else if(request.getParameter("groupeId")!=null && !request.getParameter("groupeId").equals("0")){
 					choixGroupe = Integer.parseInt(request.getParameter("groupeId"));
 				if(choixGroupe!=0){
 					if(choixMatiere!=0){
-						notes = Note.getNotesGroupeForMatiere(choixGroupe, choixMatiere);
+						notes = NotePeer.getNotesGroupeForMatiere(choixGroupe, choixMatiere);
 					}else{
-						notes = Note.getNotesGroupe(choixGroupe);
+						notes = NotePeer.getNotesGroupe(choixGroupe);
 					}
 				}
 				System.out.println("numGroupe: "+choixGroupe);
