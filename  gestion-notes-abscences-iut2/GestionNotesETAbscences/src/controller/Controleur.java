@@ -24,6 +24,7 @@ import model.GroupePeer;
 import model.Matiere;
 import model.MatierePeer;
 import model.Note;
+import model.Utilisateur;
 import model.UtilisateurPeer;
 
 
@@ -81,13 +82,21 @@ public class Controleur extends HttpServlet {
 		String methode = request.getMethod().toLowerCase();
 		
 		// On récupère l'action à exécuter
-		String actionPath= request.getPathInfo().substring(1);
-		String controleurName = actionPath;
-		System.out.println("Controleur: "+controleurName);
-
-		if(controleurName.indexOf("/")>0){
-			controleurName = controleurName.substring(0, controleurName.indexOf("/"));
+		
+		try {
+			doConnecter(request, response);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
+		if(connexion){
+			String actionPath= request.getPathInfo().substring(1);
+			String controleurName = actionPath;
+			System.out.println("Controleur: "+controleurName);
+	
+			if(controleurName.indexOf("/")>0){
+				controleurName = controleurName.substring(0, controleurName.indexOf("/"));
+			}
 			System.out.println("indexOf: "+controleurName.indexOf("/"));
 			
 			//MENU :
@@ -114,11 +123,16 @@ public class Controleur extends HttpServlet {
 			// Exécution action
 			else if (controleurName == null) {
 				controleurName = "home";
-			}else {
+			}else if(controleurName.equals("deconnexion")){
+				deconnecter(request, response);
+			}else{
 				// Autres cas
 				request.setAttribute("rubrique","Accueil");
 				doHome(request, response);
 			}
+		}else{
+			doConnexion(request, response);
+		}
 	}
 
 	public String getPathMain() {
@@ -170,21 +184,45 @@ public class Controleur extends HttpServlet {
 	}
 
 	
-	private void doConnexion(HttpServletRequest request, HttpServletResponse response) throws Exception {
+	private void doConnexion(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-			loadJSP(pathConnexion, request, response);
+			
+				loadJSP(pathConnexion, request, response);
+	}
+	private void doConnecter(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		// TODO Auto-generated method stub
 			request.setAttribute("pathView",pathConnexion);
-			connexion = authentification(request);
+			Utilisateur utilisateur =(Utilisateur)request.getSession().getAttribute("utilisateur");
+
+			connexion = authentification(request,utilisateur);
 			if(connexion){
 				HttpSession session = request.getSession(connexion);
+			}else{
+				utilisateur =new Utilisateur();
+				if(request.getParameter("login")!=null && request.getParameter("password")!=null){
+					utilisateur.setLogin(request.getParameter("login"));
+					utilisateur.setPassword(request.getParameter("password"));
+					connexion = authentification(request,utilisateur);
+					if (connexion){request.getSession().setAttribute("utilisateur", utilisateur);}
+				}else{
+					connexion=false;
+				}
 			}
 	}
 	
+	private void deconnecter(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException  {
+		// TODO Auto-generated method stub
+			request.setAttribute("pathView",pathConnexion);
+			request.getSession().removeAttribute("utilisateur");
+			loadJSP(pathConnexion, request, response);
 
-	private boolean authentification(HttpServletRequest request) throws Exception {
-		String login = request.getAttribute("login").toString();
-		String password = request.getAttribute("password").toString();
-		return UtilisateurPeer.verifConnexion(login, password);
+	}
+	private boolean authentification(HttpServletRequest request,Utilisateur utilisateur) throws Exception {
+		if(utilisateur!=null){
+			return UtilisateurPeer.verifConnexion(utilisateur.getLogin(), utilisateur.getPassword());
+		}else{
+			return false;
+		}
 	}
 	
 

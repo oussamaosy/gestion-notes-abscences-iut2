@@ -18,9 +18,9 @@ correctGetters =
     Managers generated in package model
     Beans generated in package model.bean
 
-    Failed to create dir or dir already exists: /home/askrim/workspace/GestionNotesETAbscences/src/model/
+    Failed to create dir or dir already exists: /home/fournico/javaWorkspace/GestionNotesETAbscences/src/model/
 
-    Failed to create dir or dir already exists: /home/askrim/workspace/GestionNotesETAbscences/src/model/
+    Failed to create dir or dir already exists: /home/fournico/javaWorkspace/GestionNotesETAbscences/src/model/
 
 
 
@@ -75,9 +75,7 @@ correctGetters =
         
 
 
-          
 
-          
 
 
 
@@ -86,9 +84,7 @@ correctGetters =
         
 
 
-          
 
-          
 
 
 

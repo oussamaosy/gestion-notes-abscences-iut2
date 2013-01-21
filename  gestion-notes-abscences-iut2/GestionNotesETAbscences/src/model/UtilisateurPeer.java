@@ -33,6 +33,7 @@ public class UtilisateurPeer
 		for(Utilisateur user : listUsers){
 			if(user.getLogin().equals(login) && user.getPassword().equals(password))
 				return true;
+			System.out.println("Authentifié");
 		}
 		return false;
 	}

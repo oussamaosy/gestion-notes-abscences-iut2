@@ -19,11 +19,11 @@ correctGetters =
     BaseBeans generated in package model.bean
     Maps generated in package model.map
 
-    Failed to create dir or dir already exists: /home/askrim/workspace/GestionNotesETAbscences/src/model/
+    Failed to create dir or dir already exists: /home/fournico/javaWorkspace/GestionNotesETAbscences/src/model/
 
-    Failed to create dir or dir already exists: /home/askrim/workspace/GestionNotesETAbscences/src/model/
+    Failed to create dir or dir already exists: /home/fournico/javaWorkspace/GestionNotesETAbscences/src/model/
 
-    Failed to create dir or dir already exists: /home/askrim/workspace/GestionNotesETAbscences/src/model/map/
+    Failed to create dir or dir already exists: /home/fournico/javaWorkspace/GestionNotesETAbscences/src/model/map/
 
 
 
@@ -120,6 +120,6 @@ correctGetters =
     
 
 ;
-    Failed to create dir or dir already exists: /home/askrim/workspace/GestionNotesETAbscences/src/org/apache/torque/linkage/
+    Failed to create dir or dir already exists: /home/fournico/javaWorkspace/GestionNotesETAbscences/src/org/apache/torque/linkage/
     
 
