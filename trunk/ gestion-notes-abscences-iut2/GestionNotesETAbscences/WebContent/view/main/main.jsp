@@ -19,12 +19,12 @@
 
 <body>
 	<!-- Entete -->
-	<h1>Gestion</h1>
+	<h1>Gestion des notes et absences</h1>
 	
 	<!-- Menu -->
 	<ul id="menu">
 	<li>
-	<a href="/GestionNotesETAbscences/gestion/home">Home</a>
+	<a href="/GestionNotesETAbscences/gestion/home">Acceuil</a>
 	</li>
 	<li>
 	<a href="/GestionNotesETAbscences/gestion/absences">Absences</a>
