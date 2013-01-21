@@ -135,11 +135,13 @@
 %>
 	<span>Aucune note n'est disponible pour ce filtre.</span>
 	<br/>
+	
+<%
+	}
+	
+%>
 	<a href="/GestionNotesETAbscences/gestion/notes/ajouter">
 		<img title="Ajouter une note" alt="Ajouter une note" 
 			src="<%= getServletContext().getContextPath()%>/ressources/add.png"/> 
 		Ajouter une note
 	</a>
-<%
-	}
-%>

@@ -139,11 +139,12 @@
 %>
 	<span>Aucune absence n'est disponible pour ce filtre.</span>
 	<br/>
+	
+<%
+	}
+%>
 	<a href="/GestionNotesETAbscences/gestion/absences/ajouter">
 		<img title="Ajouter une absence" alt="Ajouter une absence" 
 			src="<%= getServletContext().getContextPath()%>/ressources/add.png"/> 
 		Ajouter une absence
 	</a>
-<%
-	}
-%>
