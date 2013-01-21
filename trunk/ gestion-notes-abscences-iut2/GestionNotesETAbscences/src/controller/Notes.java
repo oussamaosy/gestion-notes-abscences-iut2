@@ -101,7 +101,9 @@ public class Notes {
 	    	List<Note> notes = new ArrayList<Note>();
 	    	int choixEtudiant = 0;
 	    	int choixGroupe = 0;
-			if(request.getParameter("etudiantId")!=null){
+			System.out.println(request.getParameter("etudiantId"));
+			System.out.println(request.getParameter("groupeId"));
+	    	if(request.getParameter("etudiantId")!=null && !request.getParameter("etudiantId").equals("0")){
 					choixEtudiant = Integer.parseInt(request.getParameter("etudiantId"));
 				if(choixEtudiant!=0){
 					if(choixMatiere!=0){
@@ -110,7 +112,7 @@ public class Notes {
 						notes = Note.getNotesEtudiant(choixEtudiant);
 					}
 				}
-			}else if(request.getParameter("groupeId")!=null){
+			}else if(request.getParameter("groupeId")!=null && !request.getParameter("groupeId").equals("0")){
 					choixGroupe = Integer.parseInt(request.getParameter("groupeId"));
 				if(choixGroupe!=0){
 					if(choixMatiere!=0){
@@ -193,7 +195,7 @@ public class Notes {
 	
 					System.out.println("SAUVEGARDE");
 					System.out.println(note);
-					home(request,response);
+					response.sendRedirect("/GestionNotesETAbscences/gestion/notes?etudiantId="+Integer.parseInt(request.getParameter("etudiantId")));
 				}
 			}else{
 				System.out.println("Formu");
@@ -300,7 +302,7 @@ public class Notes {
 	
 					System.out.println("SAUVEGARDE");
 					System.out.println(note);
-					home(request,response);
+					response.sendRedirect("/GestionNotesETAbscences/gestion/notes?etudiantId="+Integer.parseInt(request.getParameter("etudiantId")));
 				}
 			}else{
 				System.out.println("Formu");
