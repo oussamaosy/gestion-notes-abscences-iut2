@@ -1,5 +1,11 @@
 package model;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import org.apache.torque.TorqueException;
+import org.apache.torque.util.Criteria;
+
 /**
  * Tableau note
  *
@@ -16,5 +22,61 @@ public class NotePeer
 {
     /** Serial version */
     private static final long serialVersionUID = 1357814278388L;
-
+    /**
+     * Return list of Notes for a etudiantId sent
+     *
+     * @return List<Note>
+     */
+	public static List<Note> getNotesEtudiant(int etudiantId) throws TorqueException
+    {
+		Criteria crit = new Criteria();
+		crit.add(ETUDIANT_ID, etudiantId);
+    	doSelect(crit);
+		
+		return doSelect(crit);
+    }
+    
+    /**
+     * Return list of Notes for a etudiantId and matiereId sent
+     *
+     * @return List<Note>
+     */
+	public static List<Note> getNotesEtudiantForMatiere(int etudiantId, int matiereId) throws TorqueException
+    {
+		Criteria crit = new Criteria();
+		crit.add(ETUDIANT_ID, etudiantId);
+		
+		crit.and(MATIERE_ID, matiereId);
+		
+		return doSelect(crit);
+    }
+    
+    /**
+     * Return list of Notes for a groupeId sent
+     *
+     * @return List<Note>
+     */
+	public static List<Note> getNotesGroupe(int groupeId) throws TorqueException
+    {
+		Criteria crit = new Criteria();
+		crit.addJoin(EtudiantPeer.GROUPE_ID, GroupePeer.ID);
+		crit.add(GroupePeer.ID, groupeId);
+				
+		return doSelectJoinEtudiant(crit);
+    }
+    
+    /**
+     * Return list of Notes for a groupeId and matiereId sent
+     *
+     * @return List<Note>
+     */
+	public static List<Note> getNotesGroupeForMatiere(int groupeId, int matiereId) throws TorqueException
+    {
+		Criteria crit = new Criteria();
+		crit.add(MATIERE_ID, matiereId);
+		crit.addJoin(EtudiantPeer.GROUPE_ID, GroupePeer.ID);
+		crit.add(GroupePeer.ID, groupeId);
+				
+		return doSelectJoinEtudiant(crit);
+    }
 }

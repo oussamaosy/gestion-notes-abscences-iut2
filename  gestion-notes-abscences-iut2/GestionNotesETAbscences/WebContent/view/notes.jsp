@@ -92,6 +92,8 @@
 		<th>Etudiant</th>
 		<th>Matiere</th>
 		<th>Note</th>
+		<th>Groupe</th>
+		
 		<td></td>
 	</tr>
 	<%
@@ -106,6 +108,8 @@
 		<th><%=nomEtu%></th>
 		<td><%=nomMat%></td>
 		<td><%=noteEtu%></td>
+		<td><%=note.getEtudiant().getGroupe().getIntitule()%></td>
+		
 		<td>
 			<a href="/GestionNotesETAbscences/gestion/notes/editer?id=<%= note.getId()%>">
 				<img title="Modifier la note" alt="Modifier la note" 

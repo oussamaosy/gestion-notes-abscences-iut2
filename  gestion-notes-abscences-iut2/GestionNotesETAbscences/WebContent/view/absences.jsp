@@ -95,6 +95,8 @@
 		<th >Etudiant</th>
 		<th >Matiere</th>
 		<th>NbHeure</th>
+		<th>Groupe</th>
+		
 		<td></td>
 	</tr>
 	<%
@@ -109,6 +111,8 @@
 		<th><%=nomEtu%></th>
 		<td><%=nomMat%></td>
 		<td><%=nbAbs%></td>
+		<td><%=absence.getEtudiant().getGroupe().getIntitule()%></td>
+		
 		<td>
 			<a href="/GestionNotesETAbscences/gestion/absences/editer?id=<%= absence.getId()%>">
 				<img title="Modifier l'absence" alt="Modifier l'absence" 
