@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+    <%@ page import="java.util.Hashtable"%>
+    
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -23,13 +25,12 @@
 	
 	<!-- Menu -->
 	<ul id="menu">
+	<% Hashtable<String,String> menu = (Hashtable<String,String>)request.getAttribute("menu");
+	for(String key : menu.keySet()){%>
 	<li>
-	<a href="/GestionNotesETAbscences/gestion/home">Acceuil</a>
+	<a <%=request.getAttribute("rubrique").equals(key)?"class='selected'":""%> href="<%=menu.get(key)%>"><%=key %></a>
 	</li>
-	<li>
-	<a href="/GestionNotesETAbscences/gestion/absences">Absences</a>
-	</li>
-	<li><a href="/GestionNotesETAbscences/gestion/notes">Notes</a></li>
+	<% }%>
 	</ul>
 	
 	<!-- Contenu -->
