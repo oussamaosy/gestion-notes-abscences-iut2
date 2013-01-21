@@ -52,9 +52,9 @@ if(!isNew){
 				<option value=""></option>
 					<% 
 					
-					for (model.Etudiant etu : listEtudiant) {%>
+					for (model.Etudiant etu : listEtudiant) { %>
 						<option value="<%= etu.getId() %>" <%=String.valueOf(etu.getId()).equals(etuId)?"selected='selected'":""%>"><%=etu.getNom() + " " + etu.getPrenom()%></option>
-					<%}%>			
+					<% } %>			
 				</select>
 			</td>
 		</tr>
@@ -62,7 +62,7 @@ if(!isNew){
 			<th><label for="matiereId" >Matiere :</label></th>
 			
 			<td>
-				<select name="matiereId" id="etudiant">
+				<select name="matiereId" id="matiere">
 				<option value=""></option>
 					<% 
 					

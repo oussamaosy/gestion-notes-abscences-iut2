@@ -47,8 +47,8 @@ public class Controleur extends HttpServlet {
 		pathNotes = getServletConfig().getInitParameter("pathNotes");
 		pathSupprimerNotes = getServletConfig().getInitParameter("pathSupprimerNotes");
 		pathCreerNotes = getServletConfig().getInitParameter("pathCreerNotes");
-		pathEditerNotes= getServletConfig().getInitParameter("pathEditerNotes");;
-		pathEditerAbsences= getServletConfig().getInitParameter("pathEditerAbsences");;
+		pathEditerNotes= getServletConfig().getInitParameter("pathEditerNotes");
+		pathEditerAbsences= getServletConfig().getInitParameter("pathEditerAbsences");
 	}
 	
 	public String getPathEditerNotes() {

@@ -81,11 +81,14 @@ public class Absences{
 	private  void home(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
 		request.setAttribute("pathView",controleur.getPathAbsences());
-		System.out.println(request.getParameter("choix"));
 		// on récupère les données du post
-		String choix = "groupe";//request.getParameter("choix");
-		int choixMatiere = 0;//Integer.parseInt(request.getParameter("matiere"));
-		
+				String choix = "choix";
+				if(request.getParameter("choix")!=null)
+					choix = request.getParameter("choix");
+				int choixMatiere = 0;
+				if(request.getParameter("matiere")!=null)
+					choixMatiere = Integer.parseInt(request.getParameter("matiere"));
+				
 		List<Etudiant> listEtudiants;
 		List<Groupe> listGroupes;
 		List<Matiere> listMatiere;
@@ -104,8 +107,11 @@ public class Absences{
 
 			/*************Remplissage du tableau******************/
 	    	List<Absence> absences = new ArrayList<Absence>();
-			if(choix=="etudiant"){
-				int choixEtudiant = 1;//Integer.parseInt(request.getParameter("etudiant"));
+	    	int choixEtudiant = 0;
+	    	int choixGroupe = 0;
+			if(choix.equalsIgnoreCase("etudiant")){
+				if(request.getParameter("etudiant")!=null)
+					choixEtudiant = Integer.parseInt(request.getParameter("etudiant"));
 				if(choixEtudiant!=0){
 					if(choixMatiere!=0){
 						absences = Absence.getAbsencesEtudiantForMatiere(choixEtudiant, choixMatiere);
@@ -113,8 +119,9 @@ public class Absences{
 						absences = Absence.getAbsencesEtudiant(choixEtudiant);
 					}
 				}
-			}else{
-				int choixGroupe = 1;//Integer.parseInt(request.getParameter("groupe"));
+			}else if(choix.equalsIgnoreCase("groupe")){
+				if(request.getParameter("groupe")!=null)
+					choixGroupe = Integer.parseInt(request.getParameter("groupe"));
 				if(choixGroupe!=0){
 					if(choixMatiere!=0){
 						absences = Absence.getAbsencesGroupeForMatiere(choixGroupe, choixMatiere);
@@ -130,14 +137,19 @@ public class Absences{
 			
 			int nbAbs = 0;
 			int nbHeures = 0;
-			for(Absence absence : absences){
-				nbAbs = nbAbs + 1;
-				nbHeures = nbHeures + absence.getNbheures();
+			if(!absences.isEmpty()){
+				for(Absence absence : absences){
+					nbAbs = nbAbs + 1;
+					nbHeures = nbHeures + absence.getNbheures();
+				}
 			}
-			
 			//Transferer la moyenne des notes
 			request.setAttribute("nbAbs",nbAbs);
 			request.setAttribute("nbHeures",nbHeures);
+			request.setAttribute("choix",choix);
+			request.setAttribute("choixMatiere",choixMatiere);
+			request.setAttribute("choixEtudiant",choixEtudiant);
+			request.setAttribute("choixGroupe",choixGroupe);
 			
 			controleur.loadJSP(controleur.getPathMain(), request, response);
 		} catch (Exception e) {
@@ -239,8 +251,8 @@ public class Absences{
 
 			}else{
 				System.out.println("Formu");
-				editer(request,response);
 				request.setAttribute("msgErreur","Des champs sont manquants");
+				editer(request,response);
 
 			}
 		} catch (Exception e) {
