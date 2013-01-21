@@ -13,7 +13,7 @@
 		<legend> Voir les notes </legend>
 		<label for="etudiant">Etudiant : </label>
 		<select name="etudiantId" id="etudiant">
-			<option value="0">Aucune</option>
+			<option value="0"></option>
 
 			<%
 				List<model.Etudiant> listEtudiant = (List<model.Etudiant>) request.getAttribute("etudiants");
@@ -35,7 +35,7 @@
 		</select><br> 
 		<label for="groupe">Groupe : </label>
 		<select name="groupeId" id="groupe">
-			<option value="0">Aucune</option>
+			<option value="0"></option>
 			<%
 				List<model.Groupe> listGroupes = (List<model.Groupe>) request.getAttribute("groupes");
 				int groupeId = 0;
@@ -88,11 +88,11 @@
 %>
 
 <table>
-	<tr>
+	<tr class="tableEntete">
 		<th>Etudiant</th>
 		<th>Matiere</th>
 		<th>Note</th>
-		<th></th>
+		<td></td>
 	</tr>
 	<%
 				for (model.Note note : listNote) {
@@ -103,7 +103,7 @@
 					float noteEtu = (float)note.getNote();
 	%>
 	<tr>
-		<td><%=nomEtu%></td>
+		<th><%=nomEtu%></th>
 		<td><%=nomMat%></td>
 		<td><%=noteEtu%></td>
 		<td>
@@ -125,7 +125,7 @@
 <%
 	}else{
 %>
-	<span>Aucune note n'est disponible pour ce filtre.</span>
+	<span> note n'est disponible pour ce filtre.</span>
 	<br/>
 	
 <%

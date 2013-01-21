@@ -163,16 +163,19 @@ public class Absences{
 	private  void supprimer(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
 		String id= request.getParameter("id");
+		int etudiantId=0;
 		if (id!=null){
 			try {
 				Absence abs =AbsencePeer.retrieveByPK(Integer.parseInt(id));
+				etudiantId=abs.getEtudiantId();
 				AbsencePeer.doDelete(abs);
+
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}
-		home(request, response);
+		response.sendRedirect("/GestionNotesETAbscences/gestion/absences?etudiantId="+etudiantId);
 
 	}
 	

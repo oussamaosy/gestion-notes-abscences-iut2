@@ -154,16 +154,19 @@ public class Notes {
 	private void supprimer(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
 		String id= request.getParameter("id");
+		int etudiantId = 0;
 		if (id!=null){
 			try {
 				Note note = NotePeer.retrieveByPK(Integer.parseInt(id));
+				etudiantId=note.getEtudiantId();
+
 				NotePeer.doDelete(note);
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}
-		home(request, response);
+		response.sendRedirect("/GestionNotesETAbscences/gestion/notes?etudiantId="+etudiantId);
 
 	}
 	

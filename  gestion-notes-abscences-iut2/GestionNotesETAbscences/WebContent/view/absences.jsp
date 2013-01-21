@@ -91,11 +91,11 @@
 %>
 
 <table>
-	<tr>
-		<th>Etudiant</th>
-		<th>Matiere</th>
+	<tr class="tableEntete">
+		<th >Etudiant</th>
+		<th >Matiere</th>
 		<th>NbHeure</th>
-		<th></th>
+		<td></td>
 	</tr>
 	<%
 				for (model.Absence absence : listAbsence) {
@@ -106,7 +106,7 @@
 					double nbAbs = (int)absence.getNbheures();
 	%>
 	<tr>
-		<td><%=nomEtu%></td>
+		<th><%=nomEtu%></th>
 		<td><%=nomMat%></td>
 		<td><%=nbAbs%></td>
 		<td>
