@@ -11,11 +11,7 @@
 <form method="post" action="/GestionNotesETAbscences/gestion/notes">
 	<fieldset>
 		<legend> Voir les notes </legend>
-		<%if(!request.getAttribute("etudiantId").equals("0")){%>
-			<input type="radio" name="choix" value="etudiant" checked>Etudiant:
-		<%}else{%>
-			<input type="radio" name="choix" value="etudiant">Etudiant:
-		<%}%>
+		<label for="etudiant">Etudiant : </label>
 		<select name="etudiantId" id="etudiant">
 			<option value="0">Aucune</option>
 
@@ -37,11 +33,7 @@
 				}
 			%>			
 		</select><br> 
-		<%if(!request.getAttribute("groupeId").equals("0")){ %>
-			<input type="radio" name="choix" value="groupe" checked>Groupe:
-		<%}else{ %>
-			<input type="radio" name="choix" value="groupe">Groupe:
-		<%}%>
+		<label for="groupe">Groupe : </label>
 		<select name="groupeId" id="groupe">
 			<option value="0">Aucune</option>
 			<%
