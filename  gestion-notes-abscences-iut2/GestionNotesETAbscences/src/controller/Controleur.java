@@ -12,8 +12,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
-import sun.misc.Hashing;
+import javax.servlet.http.HttpSession;
 
 import model.Absence;
 import model.BaseNote;
@@ -25,6 +24,7 @@ import model.GroupePeer;
 import model.Matiere;
 import model.MatierePeer;
 import model.Note;
+import model.UtilisateurPeer;
 
 
 @SuppressWarnings("serial")
@@ -39,7 +39,9 @@ public class Controleur extends HttpServlet {
 	private String pathSupprimerNotes;
 	private String pathEditerNotes;
 	private String pathEditerAbsences;
-
+	private String pathConnexion;
+	private boolean connexion;
+	
 	// INIT
 	public void init() throws ServletException {
 		pathMain = getServletConfig().getInitParameter("pathMain");
@@ -52,6 +54,7 @@ public class Controleur extends HttpServlet {
 		pathCreerNotes = getServletConfig().getInitParameter("pathCreerNotes");
 		pathEditerNotes= getServletConfig().getInitParameter("pathEditerNotes");
 		pathEditerAbsences= getServletConfig().getInitParameter("pathEditerAbsences");
+		pathConnexion= getServletConfig().getInitParameter("pathConnexion");
 	}
 	
 	public String getPathEditerNotes() {
@@ -89,7 +92,7 @@ public class Controleur extends HttpServlet {
 			
 			//MENU :
 			Hashtable<String,String> menu = new Hashtable<String,String>();
-			menu.put("Acceuil", "/GestionNotesETAbscences/gestion/home");
+			menu.put("Accueil", "/GestionNotesETAbscences/gestion/home");
 			menu.put("Notes", "/GestionNotesETAbscences/gestion/notes");
 			menu.put("Absences", "/GestionNotesETAbscences/gestion/absences");
 			request.setAttribute("menu",menu);
@@ -113,7 +116,7 @@ public class Controleur extends HttpServlet {
 				controleurName = "home";
 			}else {
 				// Autres cas
-				request.setAttribute("rubrique","Acceuil");
+				request.setAttribute("rubrique","Accueil");
 				doHome(request, response);
 			}
 	}
@@ -155,6 +158,9 @@ public class Controleur extends HttpServlet {
 		return pathSupprimerNotes;
 	}
 
+	public String getPathConnexion() {
+		return pathConnexion;
+	}
 
 
 	private void doHome(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -164,7 +170,22 @@ public class Controleur extends HttpServlet {
 	}
 
 	
+	private void doConnexion(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		// TODO Auto-generated method stub
+			loadJSP(pathConnexion, request, response);
+			request.setAttribute("pathView",pathConnexion);
+			connexion = authentification(request);
+			if(connexion){
+				HttpSession session = request.getSession(connexion);
+			}
+	}
 	
+
+	private boolean authentification(HttpServletRequest request) throws Exception {
+		String login = request.getAttribute("login").toString();
+		String password = request.getAttribute("password").toString();
+		return UtilisateurPeer.verifConnexion(login, password);
+	}
 	
 
 	public void loadJSP(String url, HttpServletRequest request,

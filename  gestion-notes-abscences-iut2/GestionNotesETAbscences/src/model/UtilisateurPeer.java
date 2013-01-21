@@ -1,5 +1,11 @@
 package model;
 
+import java.util.List;
+
+import javax.servlet.http.HttpServletRequest;
+
+import org.apache.torque.util.Criteria;
+
 /**
  * Tableau utilisateur
  *
@@ -16,5 +22,19 @@ public class UtilisateurPeer
 {
     /** Serial version */
     private static final long serialVersionUID = 1358757744158L;
+    
+    public static List<Utilisateur> doSelectAll() throws Exception {
+		Criteria crit = new Criteria();
+		return doSelect(crit);
+	}
+    
+    public static boolean verifConnexion(String login, String password) throws Exception {
+		List<Utilisateur> listUsers = UtilisateurPeer.doSelectAll();
+		for(Utilisateur user : listUsers){
+			if(user.getLogin().equals(login) && user.getPassword().equals(password))
+				return true;
+		}
+		return false;
+	}
 
 }

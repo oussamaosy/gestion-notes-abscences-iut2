@@ -54,6 +54,10 @@
 			<param-name>pathEditerAbsences</param-name>
 			<param-value>/view/editerAbsences.jsp</param-value>
 		</init-param>
+		<init-param>
+			<param-name>pathConnexion</param-name>
+			<param-value>/view/connexion.jsp</param-value>
+		</init-param>
 
 	</servlet>
 
