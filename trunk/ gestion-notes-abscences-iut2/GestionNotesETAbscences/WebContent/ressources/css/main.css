@@ -1,3 +1,101 @@
+body{
+  margin-left:10%;
+  margin-right:10%;
+  background-color
+  }
+h1{
+	text-align:center;
+}
 .msgErreur{
 	color:red;
+}
+
+/*menu*/
+
+#menu, #menu ul /* Liste */     
+{
+        padding : 0;
+        margin : 0; 
+        list-style : none;
+        line-height : 40px; 
+        text-align : center; 
+}
+
+#menu /* Ensemble du menu */
+{
+        font-weight : bold; 
+        font-family : Arial; 
+        font-size : 18px;
+}
+
+#menu a 
+{
+        display : block; 
+        padding : 0; 
+        background : lightgrey;  
+	filter : alpha(opacity=90);
+	opacity : 0.9;
+	border:2px solid grey;
+	border-radius:6px;
+        color : #000; 
+        text-decoration : none; 
+        width : 200px; 
+	/*TRANSITION DE COULEURS*/
+      -moz-transition:background-color 1000ms ease-out; //transition mozilla
+      -o-transition:background-color 1000ms ease-out; //transition opera
+      transition:background-color 1000ms ease-out; //syntaxe d'avenir
+      -webkit-transition:background-color 1000ms ease-out; //transition webkit
+      
+      -moz-transition:color 1000ms ease-out; //transition mozilla
+      -o-transition:color 1000ms ease-out; //transition opera
+      transition:color 1000ms ease-out; //syntaxe d'avenir
+      -webkit-transition:color 1000ms ease-out; //transition webkit
+      
+}
+#menu a.selected{
+  background-color: #191C1B;
+  color:white;
+}
+#menu a:hover{
+  background-color: #191C1B;
+  color:white;
+  
+}
+#menu li    
+{ 
+        float : left; 
+	
+        border-right : 2px solid #000; 
+}
+
+html>body #menu li
+{
+        border-right: 2px solid transparent ; 
+}
+
+#menu li ul 
+{ 
+        position: absolute; 
+        width: 200px; 
+        left: -999em; 
+}
+
+
+#menu li ul li 
+{
+        border-top : 1px solid #000; 
+}
+html>body #menu li ul li                
+{
+        border-top : 1px solid transparent; 
+}
+
+#menu li ul ul 
+{
+        margin    : -22px 0 0 200px ; 
+        border-left     : 2px solid #000 ; 
+}
+#content{
+	clear:left;
+	padding:20px;
 }
