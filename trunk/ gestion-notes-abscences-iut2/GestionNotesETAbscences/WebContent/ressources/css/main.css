@@ -25,7 +25,7 @@ h1{
         padding : 0;
         margin : 0; 
         list-style : none;
-        line-height : 40px; 
+        line-height : 30px; 
         text-align : center; 
 }
 
@@ -102,8 +102,8 @@ html>body #menu li ul li
         border-left     : 2px solid #000 ; 
 }
 #menu a.selected{
-  background-color: #191C1B;
-  color:white;
+  background-color: white;
+  color:black;
 }
 #content{
 	clear:left;

@@ -3,6 +3,7 @@ package controller;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Hashtable;
 import java.util.List;
 
 import javax.servlet.RequestDispatcher;
@@ -11,6 +12,8 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import sun.misc.Hashing;
 
 import model.Absence;
 import model.BaseNote;
@@ -83,18 +86,24 @@ public class Controleur extends HttpServlet {
 			controleurName = controleurName.substring(0, controleurName.indexOf("/"));
 		}
 			System.out.println("indexOf: "+controleurName.indexOf("/"));
-
+			
+			//MENU :
+			Hashtable<String,String> menu = new Hashtable<String,String>();
+			menu.put("Acceuil", "/GestionNotesETAbscences/gestion/home");
+			menu.put("Notes", "/GestionNotesETAbscences/gestion/notes");
+			menu.put("Absences", "/GestionNotesETAbscences/gestion/absences");
+			request.setAttribute("menu",menu);
 
 			System.out.println("Controleur: "+controleurName);
 			//Répartition dans les controleurs
 
 			if(controleurName.equals("absences")){
-				
+				request.setAttribute("rubrique","Absences");
 				Absences controleurabsences = new Absences(this);
 				controleurabsences.traiterActions(request,response,actionPath,methode);
 				
 			}else if(controleurName.equals("notes")){
-				
+				request.setAttribute("rubrique","Notes");
 				Notes controleurNotes = new Notes(this);
 				controleurNotes.traiterActions(request,response,actionPath,methode);
 
@@ -102,14 +111,9 @@ public class Controleur extends HttpServlet {
 			// Exécution action
 			else if (controleurName == null) {
 				controleurName = "home";
-			}
-			else if(methode.equals("get") && controleurName.equals("home")) {
-				doHome(request, response);
-	
-			
-				
-			} else {
+			}else {
 				// Autres cas
+				request.setAttribute("rubrique","Acceuil");
 				doHome(request, response);
 			}
 	}
