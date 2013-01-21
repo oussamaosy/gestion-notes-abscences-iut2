@@ -125,7 +125,7 @@
 <%
 	}else{
 %>
-	<span> note n'est disponible pour ce filtre.</span>
+	<span>Aucune note n'est disponible pour ce filtre.</span>
 	<br/>
 	
 <%
