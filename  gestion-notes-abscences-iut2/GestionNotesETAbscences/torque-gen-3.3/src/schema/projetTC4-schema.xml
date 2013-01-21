@@ -79,5 +79,29 @@
 		</foreign-key>
 	</table>
 
-
+	<table name="categorie" description="Tableau categorie">
+		<column name="id" required="true" autoIncrement="true"
+			primaryKey="true" type="INTEGER" description="Categorie Id" />
+		<column name="intitule" required="true" type="VARCHAR" size="128"
+			description="intitule de la categorie" />
+	</table>
+	
+	<table name="utilisateur" description="Tableau utilisateur">
+		<column name="id" required="true" autoIncrement="true"
+			primaryKey="true" type="INTEGER" description="Utilisateur Id" />
+		<column name="nom" required="true" type="VARCHAR" size="128"
+			description="nom de l'utilisateur" />
+		<column name="prenom" required="true" type="VARCHAR" size="128"
+			description="prenom de l'utilisateur" />
+		<column name="login" required="true" type="VARCHAR" size="128"
+			description="login de l'utilisateur" />
+		<column name="password" required="true" type="VARCHAR" size="128"
+			description="password de l'utilisateur" />
+		<column name="categorie_id" required="false" type="INTEGER"
+			description="Foreign Key Categorie" />
+		<foreign-key foreignTable="categorie">
+			<reference local="categorie_id" foreign="id" />
+		</foreign-key>
+	</table>
+	
 </database>
