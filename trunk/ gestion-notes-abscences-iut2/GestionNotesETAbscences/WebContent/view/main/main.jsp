@@ -22,6 +22,7 @@
 <body>
 	<!-- Entete -->
 	<h1>Gestion des notes et absences</h1>
+	<a class="deconnexion" href="/GestionNotesETAbscences/gestion/deconnexion">Déconnexion</a>
 	
 	<!-- Menu -->
 	<ul id="menu">

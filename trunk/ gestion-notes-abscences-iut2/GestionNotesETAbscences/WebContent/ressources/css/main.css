@@ -106,10 +106,13 @@ html>body #menu li ul li
   color:black;
 }
 #content{
-	clear:left;
+	clear:both;
 	margin-top:80px;
 	padding:20px;
 	background-color:white;
 	border-radius:6px;
 
+}
+.deconnexion{
+	float:right;
 }
