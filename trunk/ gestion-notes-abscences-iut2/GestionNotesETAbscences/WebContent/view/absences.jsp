@@ -8,23 +8,22 @@
 
 <jsp:useBean id="etudiant" class="model.Etudiant" scope="request" /> --%>
 			
-<form method="post" action="absences">
+<form method="post" action="/GestionNotesETAbscences/gestion/absences">
 	<fieldset>
 		<legend> Voir les notes </legend>
-		<%if(request.getAttribute("choix").toString().equalsIgnoreCase("etudiant")
-		  || request.getAttribute("choix").toString().equalsIgnoreCase("choix")){%>
+		<%if(!request.getAttribute("etudiantId").equals("0")){%>
 			<input type="radio" name="choix" value="etudiant" checked>Etudiant:
 		<%}else{%>
 			<input type="radio" name="choix" value="etudiant">Etudiant:
 		<%}%>
-		<select name="etudiant" id="etudiant">
-			<option value="0">Aucune</option>
+		<select name="etudiantId" id="etudiant">
+			<option value="0"></option>
 
 			<%
 				List<model.Etudiant> listEtudiant = (List<model.Etudiant>) request.getAttribute("etudiants");
 				int choixEtudiant = 0;
-				if(request.getAttribute("choixEtudiant")!=null){
-					Object obj = request.getAttribute("choixEtudiant");
+				if(request.getAttribute("etudiantId")!=null){
+					Object obj = request.getAttribute("etudiantId");
 					choixEtudiant = ((Integer)obj).intValue();
 				}
 				for (model.Etudiant etu : listEtudiant) {
@@ -38,18 +37,18 @@
 				}
 			%>			
 		</select><br> 
-		<%if(request.getAttribute("choix").toString().equalsIgnoreCase("groupe")){ %>
+		<%if(!request.getAttribute("groupeId").equals("0")){ %>
 			<input type="radio" name="choix" value="groupe" checked>Groupe:
 		<%}else{ %>
 			<input type="radio" name="choix" value="groupe">Groupe:
 		<%}%>
-		<select name="groupe" id="groupe">
-			<option value="0">Aucune</option>
+		<select name="groupeId" id="groupe">
+			<option value="0"></option>
 			<%
 				List<model.Groupe> listGroupes = (List<model.Groupe>) request.getAttribute("groupes");
 				int choixGroupe = 0;
-				if(request.getAttribute("choixGroupe")!=null){
-					Object obj = request.getAttribute("choixGroupe");
+				if(request.getAttribute("groupeId")!=null){
+					Object obj = request.getAttribute("groupeId");
 					choixGroupe = ((Integer)obj).intValue();
 				}
 				for (model.Groupe groupe : listGroupes) {
@@ -62,14 +61,14 @@
 					}
 				}
 			%>		
-		</select><br> <label for="matiere">Filtrer par matière :</label> <select
-			name="matiere" id="matiere">
-			<option value="0">Toutes</option>
+		</select><br> <label for="matiereId">Filtrer par matière :</label> <select
+			name="matiereId" id="matiereId">
+			<option value="0"></option>
 			<%
 				List<model.Matiere> listMatiere = (List<model.Matiere>) request.getAttribute("matieres");
 				int choixMatiere = 0;
-				if(request.getAttribute("choixMatiere")!=null){
-					Object obj = request.getAttribute("choixMatiere");
+				if(request.getAttribute("matiereId")!=null){
+					Object obj = request.getAttribute("matiereId");
 					choixMatiere = ((Integer)obj).intValue();
 				}
 				for (model.Matiere matiere : listMatiere) {

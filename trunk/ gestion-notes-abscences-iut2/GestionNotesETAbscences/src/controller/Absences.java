@@ -82,12 +82,12 @@ public class Absences{
 			HttpServletResponse response) throws ServletException, IOException {
 		request.setAttribute("pathView",controleur.getPathAbsences());
 		// on récupère les données du post
-				String choix = "choix";
-				if(request.getParameter("choix")!=null)
-					choix = request.getParameter("choix");
+				//String choix = "choix";
+				//if(request.getParameter("choix")!=null)
+				//	choix = request.getParameter("choix");
 				int choixMatiere = 0;
-				if(request.getParameter("matiere")!=null)
-					choixMatiere = Integer.parseInt(request.getParameter("matiere"));
+				if(request.getParameter("matiereId")!=null)
+					choixMatiere = Integer.parseInt(request.getParameter("matiereId"));
 				
 		List<Etudiant> listEtudiants;
 		List<Groupe> listGroupes;
@@ -109,9 +109,8 @@ public class Absences{
 	    	List<Absence> absences = new ArrayList<Absence>();
 	    	int choixEtudiant = 0;
 	    	int choixGroupe = 0;
-			if(choix.equalsIgnoreCase("etudiant")){
-				if(request.getParameter("etudiant")!=null)
-					choixEtudiant = Integer.parseInt(request.getParameter("etudiant"));
+	    	if(request.getParameter("etudiantId")!=null){
+					choixEtudiant = Integer.parseInt(request.getParameter("etudiantId"));
 				if(choixEtudiant!=0){
 					if(choixMatiere!=0){
 						absences = Absence.getAbsencesEtudiantForMatiere(choixEtudiant, choixMatiere);
@@ -119,9 +118,8 @@ public class Absences{
 						absences = Absence.getAbsencesEtudiant(choixEtudiant);
 					}
 				}
-			}else if(choix.equalsIgnoreCase("groupe")){
-				if(request.getParameter("groupe")!=null)
-					choixGroupe = Integer.parseInt(request.getParameter("groupe"));
+			}else if((request.getParameter("groupeId")!=null)){
+					choixGroupe = Integer.parseInt(request.getParameter("groupeId"));
 				if(choixGroupe!=0){
 					if(choixMatiere!=0){
 						absences = Absence.getAbsencesGroupeForMatiere(choixGroupe, choixMatiere);
@@ -146,10 +144,10 @@ public class Absences{
 			//Transferer la moyenne des notes
 			request.setAttribute("nbAbs",nbAbs);
 			request.setAttribute("nbHeures",nbHeures);
-			request.setAttribute("choix",choix);
-			request.setAttribute("choixMatiere",choixMatiere);
-			request.setAttribute("choixEtudiant",choixEtudiant);
-			request.setAttribute("choixGroupe",choixGroupe);
+			//request.setAttribute("choix",choix);
+			request.setAttribute("matiereId",choixMatiere);
+			request.setAttribute("etudiantId",choixEtudiant);
+			request.setAttribute("groupeId",choixGroupe);
 			
 			controleur.loadJSP(controleur.getPathMain(), request, response);
 		} catch (Exception e) {
