@@ -11,7 +11,6 @@
 <form method="post" action="notes">
 	<fieldset>
 		<legend> Voir les notes </legend>
-		<%System.out.println(request.getAttribute("choix").toString());%>
 		<%if(request.getAttribute("choix").toString().equalsIgnoreCase("etudiant")
 		  || request.getAttribute("choix").toString().equalsIgnoreCase("choix")){%>
 			<input type="radio" name="choix" value="etudiant" checked>Etudiant:
@@ -129,22 +128,19 @@
 	</tr>
 	<%
 				}
-			%>
-	<tr>
-		<td>
-				<a href="/GestionNotesETAbscences/gestion/notes/ajouter">
-					<img title="Ajouter une note" alt="Ajouter une note" 
-						src="<%= getServletContext().getContextPath()%>/ressources/add.png"/> 
-						Ajouter une note
-				</a>
-		</td>
-	</tr>		
+	%>
 </table>
 <br>
 <%
 	}else{
 %>
 	<span>Aucune note n'est disponible pour ce filtre.</span>
+	<br/>
+	<a href="/GestionNotesETAbscences/gestion/notes/ajouter">
+		<img title="Ajouter une note" alt="Ajouter une note" 
+			src="<%= getServletContext().getContextPath()%>/ressources/add.png"/> 
+		Ajouter une note
+	</a>
 <%
 	}
 %>
