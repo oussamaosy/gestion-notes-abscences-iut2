@@ -19,7 +19,7 @@
 
 <body>
 	<!-- Entete -->
-	<h1>Application de suivi des notes et absences</h1>
+	<h1>Gestion</h1>
 	
 	<!-- Menu -->
 	<ul id="menu">
@@ -34,8 +34,10 @@
 	
 	<!-- Contenu -->
 	<% String pathView = (String)request.getAttribute("pathView"); %>
-	<jsp:include page="<%=pathView%>"/>
+	<div id="content">
 	
+	<jsp:include page="<%=pathView%>"/>
+	</div>
 	<!-- Pied de page -->
 	<p>Réalisé par Moez Askri et Colin Fournier,2012-2013, IUT2 de Grenoble</p>
 </body>
