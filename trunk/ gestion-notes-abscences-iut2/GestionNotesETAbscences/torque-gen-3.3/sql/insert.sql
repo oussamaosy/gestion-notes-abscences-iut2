@@ -44,3 +44,13 @@ INSERT INTO note (note,etudiant_id,matiere_id) VALUES (4.5,4,5);
 INSERT INTO note (note,etudiant_id,matiere_id) VALUES (8.9,4,4);
 INSERT INTO note (note,etudiant_id,matiere_id) VALUES (14,2,6);
 INSERT INTO note (note,etudiant_id,matiere_id) VALUES (15,1,1);
+
+# --------------------Insert des categories--------------------------------------
+
+INSERT INTO categorie (intitule) VALUES ('administrateur');
+INSERT INTO categorie (intitule) VALUES ('abonne');
+
+# --------------------Insert des utilisateurs--------------------------------------
+
+INSERT INTO utilisateur (nom,prenom,login,password,categorie_id) VALUES ('askri','moez,','client','sesame',1);
+INSERT INTO utilisateur (nom,prenom,login,password,categorie_id) VALUES ('fournier','colin,','client2','sesame2',2);

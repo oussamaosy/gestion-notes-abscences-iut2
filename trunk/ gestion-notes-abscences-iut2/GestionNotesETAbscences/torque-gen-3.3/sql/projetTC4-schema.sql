@@ -65,6 +65,34 @@ CREATE TABLE note
     matiere_id INTEGER,
     PRIMARY KEY(id));
 
+
+# -----------------------------------------------------------------------
+# categorie
+# -----------------------------------------------------------------------
+drop table if exists categorie;
+
+CREATE TABLE categorie
+(
+    id INTEGER NOT NULL AUTO_INCREMENT,
+    intitule VARCHAR(128) NOT NULL,
+    PRIMARY KEY(id));
+
+
+# -----------------------------------------------------------------------
+# utilisateur
+# -----------------------------------------------------------------------
+drop table if exists utilisateur;
+
+CREATE TABLE utilisateur
+(
+    id INTEGER NOT NULL AUTO_INCREMENT,
+    nom VARCHAR(128) NOT NULL,
+    prenom VARCHAR(128) NOT NULL,
+    login VARCHAR(128) NOT NULL,
+    password VARCHAR(128) NOT NULL,
+    categorie_id INTEGER,
+    PRIMARY KEY(id));
+
 ALTER TABLE etudiant
     ADD CONSTRAINT etudiant_FK_1
     FOREIGN KEY (groupe_id)
@@ -93,5 +121,11 @@ ALTER TABLE note
     ADD CONSTRAINT note_FK_2
     FOREIGN KEY (matiere_id)
     REFERENCES matiere (id)
+;
+
+ALTER TABLE utilisateur
+    ADD CONSTRAINT utilisateur_FK_1
+    FOREIGN KEY (categorie_id)
+    REFERENCES categorie (id)
 ;
 

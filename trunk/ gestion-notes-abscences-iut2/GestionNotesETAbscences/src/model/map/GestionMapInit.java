@@ -20,5 +20,7 @@ public class GestionMapInit
         model.MatierePeer.getMapBuilder();
         model.AbsencePeer.getMapBuilder();
         model.NotePeer.getMapBuilder();
+        model.CategoriePeer.getMapBuilder();
+        model.UtilisateurPeer.getMapBuilder();
     }
 }
