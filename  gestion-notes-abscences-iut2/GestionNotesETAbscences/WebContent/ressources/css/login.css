@@ -1,0 +1,131 @@
+body{
+height:350px;
+font-size:0.9em;
+font-family:"Trebuchet MS",sans-serif;
+background:#637e85;
+}
+body form{
+width:435px;
+height:235px;
+margin:50px auto;
+padding-top:1px;
+background:#353b41;
+background:-moz-linear-gradient(top,#464d55,#21272a);
+background:-webkit-gradient(linear,left top,left bottom,from(#464d55),to(#21272a));
+-webkit-border-radius:5px;
+   -moz-border-radius:5px;
+        border-radius:5px;
+-webkit-box-shadow:0px -1px 0px rgba(255,255,255,0.25);
+   -moz-box-shadow:0px -1px 0px rgba(255,255,255,0.25);
+        box-shadow:0px -1px 0px rgba(255,255,255,0.25);
+}
+body form div{
+width:425px;
+height:224px;
+margin:5px auto;
+background:#d1dee4;
+background:-moz-linear-gradient(top,#beced4,#e4f0f5);
+background:-webkit-gradient(linear,left top,left bottom,from(#beced4),to(#e4f0f5));
+-webkit-box-shadow:0px 1px 1px rgba(0,0,0,1) inset;
+   -moz-box-shadow:0px 1px 1px rgba(0,0,0,1) inset;
+        box-shadow:0px 1px 1px rgba(0,0,0,1) inset;
+}
+
+
+body form fieldset{
+margin:5px auto;
+padding:5px 0px 0px 0px;
+border:none;
+}
+
+body form fieldset legend{
+height:50px;
+white-space:normal;
+font-weight:bold;
+font-size:1.25em;
+color:#464d55;
+text-shadow:0px 1px 0px rgba(255,255,255,0.8);
+padding:10px 35px;
+}
+body form p{
+width:350px;
+height:35px;
+margin:auto;
+margin-bottom:14px;
+}
+
+body form label,body form input{
+font-family:"Trebuchet MS",sans-serif;
+font-size:1.1em;
+}
+
+body form label{
+display:block;
+float:left;
+width:70px;
+height:29px;
+padding-left:15px;
+color:white;
+font-weight:bold;
+padding-top:6px;
+text-shadow:0px -1px 0px rgba(0,0,0,0.2);
+-webkit-border-radius:5px 0px 0px 5px;
+   -moz-border-radius:5px 0px 0px 5px;
+        border-radius:5px 0px 0px 5px;
+background:#09c;
+background:-moz-linear-gradient(top,#51c3fa,#09c);
+background:-webkit-gradient(linear,left top,left bottom,from(#51c3fa),to(#09c));
+-webkit-box-shadow:0px 1px 1px rgba(0,0,0,1) inset;
+   -moz-box-shadow:0px 1px 1px rgba(0,0,0,1) inset;
+        box-shadow:0px 1px 1px rgba(0,0,0,1) inset;
+}
+
+
+
+body form input[type="text"]{
+display:inline-block;
+width:265px;
+height:100%;
+padding-left:10px;
+font-weight:bold;
+border:none;
+color:#cecece;
+text-shadow:0px 1px 0px #000;
+background:#1f2026;
+-webkit-border-radius:0px 5px 5px 0px;
+   -moz-border-radius:0px 5px 5px 0px;
+        border-radius:0px 5px 5px 0px;
+-webkit-box-shadow:0px 1px 1px #000 inset;
+   -moz-box-shadow:0px 1px 1px #000 inset;
+        box-shadow:0px 1px 1px #000 inset;
+}
+body form input[type="text"]:focus{
+outline:none;
+-webkit-box-shadow:0px 0px 3px #000;
+   -moz-box-shadow:0px 0px 3px #000;
+        box-shadow:0px 0px 3px #000;
+}
+body form input[type="submit"]{
+width:95px;
+height:30px;
+margin-left:295px;
+font-size:1em;
+font-weight:bold;
+border:none;
+color:#cecece;
+text-shadow:0px -1px 0px #000;
+background:#1f2026;
+background:-moz-linear-gradient(top,#1f2026,#15161a);
+background:-webkit-gradient(linear,left top,left bottom,from(#1f2026),to(#15161a));
+-webkit-border-radius:5px;
+   -moz-border-radius:5px;
+        border-radius:5px;
+-webkit-box-shadow:0px 0px 1px #000;
+   -moz-box-shadow:0px 0px 1px #000;
+        box-shadow:0px 0px 1px #000;
+}
+body form input[type="submit"]:hover{
+background:#343640;
+background:-moz-linear-gradient(top,#343640,#15161a);
+background:-webkit-gradient(linear,left top,left bottom,from(#343640),to(#15161a));
+}
