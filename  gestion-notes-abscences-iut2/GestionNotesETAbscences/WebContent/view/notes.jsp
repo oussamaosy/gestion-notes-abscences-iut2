@@ -16,7 +16,7 @@
 		<%}else{%>
 			<input type="radio" name="choix" value="etudiant">Etudiant:
 		<%}%>
-		<select name="etudiant" id="etudiant">
+		<select name="etudiantId" id="etudiant">
 			<option value="0">Aucune</option>
 
 			<%
@@ -42,7 +42,7 @@
 		<%}else{ %>
 			<input type="radio" name="choix" value="groupe">Groupe:
 		<%}%>
-		<select name="groupe" id="groupe">
+		<select name="groupeId" id="groupe">
 			<option value="0">Aucune</option>
 			<%
 				List<model.Groupe> listGroupes = (List<model.Groupe>) request.getAttribute("groupes");
@@ -62,7 +62,7 @@
 				}
 			%>		
 		</select><br> <label for="matiere">Filtrer par matière :</label> <select
-			name="matiere" id="matiere">
+			name="matiereId" id="matiere">
 			<option value="0">Toutes</option>
 			<%
 				List<model.Matiere> listMatiere = (List<model.Matiere>) request.getAttribute("matieres");

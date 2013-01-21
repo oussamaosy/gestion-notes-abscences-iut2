@@ -109,7 +109,9 @@ public class Absences{
 	    	List<Absence> absences = new ArrayList<Absence>();
 	    	int choixEtudiant = 0;
 	    	int choixGroupe = 0;
-	    	if(request.getParameter("etudiantId")!=null){
+
+
+	    	if(request.getParameter("etudiantId")!=null && !request.getParameter("etudiantId").equals("0")){
 					choixEtudiant = Integer.parseInt(request.getParameter("etudiantId"));
 				if(choixEtudiant!=0){
 					if(choixMatiere!=0){
@@ -118,7 +120,8 @@ public class Absences{
 						absences = Absence.getAbsencesEtudiant(choixEtudiant);
 					}
 				}
-			}else if((request.getParameter("groupeId")!=null)){
+			}else if((request.getParameter("groupeId")!=null && !request.getParameter("groupeId").equals("0"))){
+				System.out.println("passe");
 					choixGroupe = Integer.parseInt(request.getParameter("groupeId"));
 				if(choixGroupe!=0){
 					if(choixMatiere!=0){
@@ -205,7 +208,8 @@ public class Absences{
 				System.out.println("SAUVEGARDE");
 				System.out.println(abs);
 				//controleur.getServletContext().getRequestDispatcher("/gestion/absences").forward(request, response);
-				home(request,response);
+				response.sendRedirect("/GestionNotesETAbscences/gestion/absences?etudiantId="+Integer.parseInt(request.getParameter("etudiantId")));
+				//home(request,response);
 
 			}else{
 				System.out.println("Formu");
@@ -246,7 +250,7 @@ public class Absences{
 
 				System.out.println("SAUVEGARDE");
 				System.out.println(abs);
-				home(request,response);
+				response.sendRedirect("/GestionNotesETAbscences/gestion/absences?etudiantId="+Integer.parseInt(request.getParameter("etudiantId")));
 
 			}else{
 				System.out.println("Formu");
